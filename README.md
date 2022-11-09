@@ -1,2 +1,3 @@
 # BabySteps
-Child development milestones journal
+
+Child development journal
