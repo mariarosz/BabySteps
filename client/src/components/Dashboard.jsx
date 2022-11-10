@@ -7,7 +7,7 @@ import Timeline from './Timeline';
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
-  //const navigate = useNavigate();
+  console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
 
   function handleCreate() {
