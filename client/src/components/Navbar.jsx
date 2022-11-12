@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-export function Navbar() {
+export function Navbar({ babyName }) {
   const [error, setError] = useState('');
   const { currentUser, logout } = useAuth();
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ export function Navbar() {
 
   return (
     <div className="header">
-      <h1>Joe's Steps</h1>
+      <h1>{babyName}'s Steps</h1>
       {error && <div>{error}</div>}
       <button onClick={handleLogout}>Log Out</button>
     </div>

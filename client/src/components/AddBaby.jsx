@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { Confirmation } from './Confirmation';
 
-export function AddBaby() {
+export function AddBaby({ babyName, setBabyName, babyBirth, setBabyBirth }) {
   const { currentUser } = useAuth();
 
-  console.log('User ID from addBaby:', currentUser.uid);
-  const [babyName, setBabyName] = useState('');
-  const [babyBirth, setBabyBirth] = useState('');
+  /* const [babyName, setBabyName] = useState('');
+  const [babyBirth, setBabyBirth] = useState(''); */
   const [confirmation, setConfirmation] = useState(false);
-  const [hideForm, setHideForm] = useState(true);
 
   const usersRef = collection(db, 'users');
 
@@ -36,26 +34,25 @@ export function AddBaby() {
         console.log(error);
       });
 
-    event.target.reset();
-  };
-
-  const handleClick = () => {
     setConfirmation(true);
-    setHideForm(false);
+
+    event.target.reset();
   };
 
   return (
     <div>
-      <h1>What's your baby name?</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Baby's name" />
-        <input type="date" name="date" />
-        <button type="submit" onClick={handleClick}>
-          send
-        </button>
-        {confirmation ? <Confirmation currentUser={currentUser} /> : null}
-        {hideForm ? <> </> : null}
-      </form>
+      {confirmation ? (
+        <Confirmation currentUser={currentUser} babyName={babyName} />
+      ) : (
+        <div className="add-baby-container">
+          <h1>What's your baby's name?</h1>
+          <form onSubmit={handleSubmit}>
+            <input type="text" name="name" placeholder="Baby's name" />
+            <input type="date" name="date" />
+            <button type="submit">send</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

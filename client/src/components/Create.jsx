@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-export function Create() {
+export function Create({ created, setCreated }) {
   const { currentUser } = useAuth();
   const stepsRef = collection(db, 'steps');
 
@@ -15,6 +15,7 @@ export function Create() {
     const title = event.target.title.value;
     const date = event.target.date.value;
     const notes = event.target.notes.value;
+    //const age = HERE I NEED TO CALCULATE THE AGE
 
     addDoc(stepsRef, {
       title: title,
@@ -29,6 +30,7 @@ export function Create() {
         console.log(error);
       });
 
+    setCreated(true);
     event.target.reset();
   }
 
