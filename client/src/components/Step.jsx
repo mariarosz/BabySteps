@@ -1,10 +1,10 @@
 import React from 'react';
 
-export function Step({ step, setSteps }) {
+export function Step({ step, setSteps, babyBirth, age }) {
   return (
     <div>
       <h1>{step.title}</h1>
-      <p></p>
+      <p>{age}</p>
     </div>
   );
 }

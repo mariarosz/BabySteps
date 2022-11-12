@@ -32,6 +32,7 @@ export default function Dashboard() {
       });
     }
     getData().then((result) => setBabyName(result[0].name));
+    getData().then((result) => setBabyBirth(result[0].date));
   }, [userId]);
 
   return (
@@ -55,6 +56,8 @@ export default function Dashboard() {
             created={created}
             setCreated={setCreated}
             currentUser={currentUser}
+            babyBirth={babyBirth}
+            setBabyBirth={setBabyBirth}
           />
         ) : null}
       </div>

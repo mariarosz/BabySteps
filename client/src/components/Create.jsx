@@ -1,11 +1,8 @@
 import React from 'react';
-//import { DBService } from '../services/DBservice';
-import { useAuth } from '../contexts/AuthContext';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-export function Create({ created, setCreated }) {
-  const { currentUser } = useAuth();
+export function Create({ created, setCreated, currentUser }) {
   const stepsRef = collection(db, 'steps');
 
   async function handleSubmit(event) {
@@ -15,7 +12,6 @@ export function Create({ created, setCreated }) {
     const title = event.target.title.value;
     const date = event.target.date.value;
     const notes = event.target.notes.value;
-    //const age = HERE I NEED TO CALCULATE THE AGE
 
     addDoc(stepsRef, {
       title: title,
@@ -38,9 +34,9 @@ export function Create({ created, setCreated }) {
     <div className="create-panel">
       <h2>What's new?</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="new step title" />
+        <input type="text" name="title" placeholder="new step title" required />
         <input type="text" name="notes" placeholder="anything more..." />
-        <input type="date" name="date" />
+        <input type="date" name="date" required />
         <button type="submit">Add a Step</button>
       </form>
     </div>
