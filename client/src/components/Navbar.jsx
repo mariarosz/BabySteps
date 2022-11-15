@@ -22,7 +22,9 @@ export function Navbar({ babyName }) {
     <div className="header">
       <h1>{babyName}'s Steps</h1>
       {error && <div>{error}</div>}
-      <button onClick={handleLogout}>Log Out</button>
+      <button className="logout" onClick={handleLogout}>
+        Log Out
+      </button>
     </div>
   );
 }

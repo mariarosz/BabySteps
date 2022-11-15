@@ -1,10 +1,13 @@
 import React from 'react';
 
-export function Step({ step, setSteps, babyBirth, age }) {
+export function Step({ step }) {
   return (
-    <div>
-      <h1>{step.title}</h1>
-      <p>{age}</p>
+    <div className="step-container">
+      <img src={step.url} alt="img" />
+      <div className="step-content">
+        <h1>{step.title}</h1>
+        <p>{step.notes}</p>
+      </div>
     </div>
   );
 }

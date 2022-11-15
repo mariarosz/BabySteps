@@ -1,14 +1,17 @@
 import React from 'react';
+import img2 from '../assets/blob-pink.svg';
 
 export function Confirmation({ babyName }) {
   return (
-    <div id="box">
-      <div id="content">
-        <h1>Dear {babyName},</h1>
-        <p>
+    <div className="centralised-content-container">
+      <div id="content-box">
+        <h3>Dear {babyName},</h3>
+        <p id="text">
           It's lovely that we can accompany you on this great journey, in your
           discoveries and achievements.
         </p>
+
+        <p>Enjoy every little step of your way!</p>
       </div>
     </div>
   );

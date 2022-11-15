@@ -20,9 +20,6 @@ export default function Login() {
       navigate('/');
     } catch (error) {
       setError(error.message);
-      //console.log(error.message);
-      //console.log('handleSubmit:', error);
-      //setError('Failed to create an account.');
     }
     setLoading(false);
   }

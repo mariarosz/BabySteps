@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import img2 from '../step_img_placeholder2.webp';
 
 export default function Signup() {
   const emailRef = useRef();
@@ -30,9 +31,21 @@ export default function Signup() {
   }
 
   return (
-    <>
-      <div className="signup-container">
-        <div className="signup-body">
+    <div className="signup-container">
+      <div className="logo-panel">
+        <h1 id="logo">BabySteps</h1>
+      </div>
+      <div className="signup-content">
+        <div className="baby-steps-info">
+          <h3 id="hero">Your Baby development journal</h3>
+          <div className="step-container">
+            <img id="signup-img" src={img2} alt="img" />
+            <div className="step-content">
+              <h1>First self-eaten meal</h1>
+            </div>
+          </div>
+        </div>
+        <div className="signup">
           <h1>Signup</h1>
           {error && <div>{error}</div>}
           <form onSubmit={handleSubmit}>
@@ -46,11 +59,13 @@ export default function Signup() {
               Sign Up
             </button>
           </form>
+          <div>
+            <p id="link">
+              Already have an account? <Link to="/login">Log in.</Link>
+            </p>
+          </div>
         </div>
       </div>
-      <div>
-        Already have an account? <Link to="/login">Log in.</Link>
-      </div>
-    </>
+    </div>
   );
 }

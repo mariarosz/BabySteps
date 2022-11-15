@@ -2,9 +2,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { AddBaby } from './AddBaby';
-import { Step } from './Step';
-import { differenceInMonths } from 'date-fns';
+import { Confirmation } from './Confirmation';
+import { Budle } from './Budle';
+import { addAges } from '../utils/addAgeToStep';
 
 export default function Timeline({
   userId,
@@ -16,32 +16,6 @@ export default function Timeline({
   setBabyBirth,
 }) {
   const [steps, setSteps] = useState([]);
-  const [budles, setBudles] = useState([]);
-
-  function calculateAge(birth, event) {
-    const result = differenceInMonths(new Date(event), new Date(birth));
-    if (result < 1) {
-      return '1st month';
-    } else if (result < 2) {
-      return '2nd month';
-    } else if (result < 3) {
-      return '3rd month';
-    } else if (result < 4) {
-      return '4th month';
-    } else if (result < 5) {
-      return 'fifth month';
-    } else if (result < 6) {
-      return 'sixth month';
-    } else if (result < 7) {
-      return 'third month';
-    } else if (result > 16 && result < 19) {
-      return '2 years';
-    } else if (result < 24) {
-      return '2 years';
-    } else if (result < 36) {
-      return '3 years';
-    }
-  }
 
   useEffect(() => {
     async function getData() {
@@ -55,27 +29,32 @@ export default function Timeline({
       });
     }
     setCreated(false);
-    getData().then((result) => setSteps(result));
-  }, [userId, created, setCreated]);
+    getData()
+      .then((result) => setSteps(addAges(result, babyBirth)))
+      .then(() => console.log('im being run again on timeline'));
+  }, [userId, created, setCreated, babyBirth]);
+
+  const budles = [];
+
+  for (let i = 0; i < steps.length; i++) {
+    if (budles.findIndex((budle) => budle.age === steps[i].age) >= 0) {
+      const index = budles.findIndex((budle) => budle.age === steps[i].age);
+      budles[index].steps.push(steps[i]);
+    } else {
+      const newStep = { age: steps[i].age, steps: [] };
+      newStep.steps.push(steps[i]);
+      budles.push(newStep);
+    }
+  }
+
+  budles.sort((a, b) => a.age - b.age);
 
   return (
     <>
       {steps.length === 0 ? (
-        <AddBaby
-          babyName={babyName}
-          setBabyName={setBabyName}
-          babyBirth={babyBirth}
-          setBabyBirth={setBabyBirth}
-        />
+        <Confirmation babyName={babyName} />
       ) : (
-        steps.map((step) => (
-          <Step
-            step={step}
-            setSteps={setSteps}
-            key={step.id}
-            age={calculateAge(babyBirth, step.date)}
-          />
-        ))
+        budles.map((budle, index) => <Budle budle={budle} key={index} />)
       )}
     </>
   );

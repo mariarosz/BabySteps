@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 //import { useNavigate } from 'react-router-dom';
-import { Create } from './Create';
+import { CreateStep } from './CreateStep';
+import { AddBaby } from './AddBaby';
 import { Navbar } from './Navbar';
 import Timeline from './Timeline';
 import { db } from '../firebase';
@@ -15,9 +16,14 @@ export default function Dashboard() {
   const [created, setCreated] = useState(false);
   const [babyName, setBabyName] = useState();
   const [babyBirth, setBabyBirth] = useState();
+  const babyRef = useRef(false);
 
   function handleCreate() {
-    setShowCreate(true);
+    if (showCreate) {
+      setShowCreate(false);
+    } else {
+      setShowCreate(true);
+    }
   }
 
   useEffect(() => {
@@ -31,36 +37,55 @@ export default function Dashboard() {
         return { ...doc.data(), id: doc.UserId };
       });
     }
-    getData().then((result) => setBabyName(result[0].name));
-    getData().then((result) => setBabyBirth(result[0].date));
+    getData()
+      .then((result) => setBabyName(result[0].name))
+      .then(() => (babyRef.current = true))
+      .catch((err) => {
+        console.log(err);
+      });
+    getData()
+      .then((result) => setBabyBirth(result[0].date))
+      .then(() => console.log('im being run again'))
+      .catch((err) => console.log(err));
   }, [userId]);
 
   return (
-    <div>
-      <Navbar babyName={babyName} />
-      <div className="timeline-container">
-        <Timeline
-          userId={userId}
-          created={created}
-          setCreated={setCreated}
+    <div className="main-container">
+      {currentUser.uid && babyRef ? (
+        <>
+          <Navbar babyName={babyName} />
+          <div className="timeline-container">
+            <Timeline
+              userId={userId}
+              created={created}
+              setCreated={setCreated}
+              babyName={babyName}
+              setBabyName={setBabyName}
+              babyBirth={babyBirth}
+              setBabyBirth={setBabyBirth}
+            />
+            <button className="create-button" onClick={handleCreate}>
+              {showCreate ? <h3>x</h3> : <h2>+</h2>}
+            </button>
+            {showCreate ? (
+              <CreateStep
+                created={created}
+                setCreated={setCreated}
+                currentUser={currentUser}
+                babyBirth={babyBirth}
+                setBabyBirth={setBabyBirth}
+              />
+            ) : null}
+          </div>
+        </>
+      ) : (
+        <AddBaby
           babyName={babyName}
           setBabyName={setBabyName}
           babyBirth={babyBirth}
           setBabyBirth={setBabyBirth}
         />
-        <button className="create-button" onClick={handleCreate}>
-          Add Step
-        </button>
-        {showCreate ? (
-          <Create
-            created={created}
-            setCreated={setCreated}
-            currentUser={currentUser}
-            babyBirth={babyBirth}
-            setBabyBirth={setBabyBirth}
-          />
-        ) : null}
-      </div>
+      )}
     </div>
   );
 }

@@ -7,8 +7,6 @@ import { Confirmation } from './Confirmation';
 export function AddBaby({ babyName, setBabyName, babyBirth, setBabyBirth }) {
   const { currentUser } = useAuth();
 
-  /* const [babyName, setBabyName] = useState('');
-  const [babyBirth, setBabyBirth] = useState(''); */
   const [confirmation, setConfirmation] = useState(false);
 
   const usersRef = collection(db, 'users');
@@ -45,11 +43,13 @@ export function AddBaby({ babyName, setBabyName, babyBirth, setBabyBirth }) {
         <Confirmation currentUser={currentUser} babyName={babyName} />
       ) : (
         <div className="add-baby-container">
-          <h1>What's your baby's name?</h1>
+          <h1>Who's The Little One?</h1>
           <form onSubmit={handleSubmit}>
-            <input type="text" name="name" placeholder="Baby's name" />
+            <label>baby's Name</label>
+            <input type="text" name="name" placeholder="" />
+            <label>Baby's date of Birth</label>
             <input type="date" name="date" />
-            <button type="submit">send</button>
+            <button type="submit">ADD</button>
           </form>
         </div>
       )}
