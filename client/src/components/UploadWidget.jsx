@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
+import { HiCheck } from 'react-icons/hi';
 
-export default function UploadWidget({ setUrl }) {
+export default function UploadWidget({ url, setUrl }) {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
@@ -17,9 +18,11 @@ export default function UploadWidget({ setUrl }) {
         }
       }
     );
-  }, []);
+  }, [setUrl]);
 
   return (
-    <button onClick={() => widgetRef.current.open()}>Upload picture</button>
+    <button id="upload" onClick={() => widgetRef.current.open()}>
+      {url ? <HiCheck /> : 'Upload picture'}
+    </button>
   );
 }

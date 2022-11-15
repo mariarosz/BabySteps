@@ -1,5 +1,4 @@
 import React from 'react';
-import img2 from '../assets/blob-pink.svg';
 
 export function Confirmation({ babyName }) {
   return (

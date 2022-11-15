@@ -41,7 +41,7 @@ export function CreateStep({ setCreated, currentUser }) {
         <input type="text" name="title" placeholder="title" required />
         <input type="text" name="notes" placeholder="notes" />
         <input type="date" name="date" required />
-        <UploadWidget setUrl={setUrl} />
+        <UploadWidget setUrl={setUrl} url={url} />
         <button type="submit">ADD</button>
       </form>
     </div>

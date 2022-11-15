@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-//import { useNavigate } from 'react-router-dom';
 import { CreateStep } from './CreateStep';
 import { AddBaby } from './AddBaby';
 import { Navbar } from './Navbar';
@@ -11,7 +10,6 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 export default function Dashboard() {
   const { currentUser } = useAuth();
   const userId = currentUser.uid;
-  console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [babyName, setBabyName] = useState();
@@ -38,20 +36,21 @@ export default function Dashboard() {
       });
     }
     getData()
-      .then((result) => setBabyName(result[0].name))
-      .then(() => (babyRef.current = true))
+      .then((result) => {
+        babyRef.current = true;
+        setBabyName(result[0].name);
+      })
       .catch((err) => {
         console.log(err);
       });
     getData()
       .then((result) => setBabyBirth(result[0].date))
-      .then(() => console.log('im being run again'))
       .catch((err) => console.log(err));
-  }, [userId]);
+  }, [userId, babyName]);
 
   return (
     <div className="main-container">
-      {currentUser.uid && babyRef ? (
+      {currentUser.uid && babyRef.current ? (
         <>
           <Navbar babyName={babyName} />
           <div className="timeline-container">

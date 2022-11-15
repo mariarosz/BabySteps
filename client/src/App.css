@@ -112,6 +112,7 @@ img {
   box-sizing: border-box;
   background-color: rgb(243, 236, 228);
   position: relative;
+  border-radius: 4px;
 }
 
 .budle-container {
@@ -137,17 +138,19 @@ h1 {
 }
 button {
   background-color: #f0e7d7;
-  border: none;
-  border-radius: 5%;
+  border: solid 1px #f0e7d7;
+  border-radius: 5px;
   padding: 12px;
   color: black;
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
   font-weight: 600;
+  cursor: pointer;
 }
 
-button::hover {
-  background-color: #537c7a;
+button:hover {
+  background-color: #c59155;
+  border: none;
   color: white;
 }
 
@@ -156,16 +159,17 @@ button::hover {
   width: 5rem;
   height: 5rem;
   position: fixed;
-  bottom: 3rem;
-  right: 3rem;
+  bottom: 1.5%;
+  right: 1.5%;
   border: none;
   content: '+';
   z-index: 6;
+  cursor: pointer;
 }
 
 .create-panel {
   width: 40%;
-  height: 70%;
+  height: 50%;
   padding: 4rem;
   display: flex;
   flex-direction: column;
@@ -232,20 +236,34 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(./assets/blob-pink.svg);
-  background-position: center center;
-  background-size: ;
+  background-image: url(./assets/blob-pink.svg), url(./assets/blob-sun.svg),
+    url(./assets/blob-beige.svg), url(./assets/blob-blue.svg);
+  background-position: 50% 70%, 50% 70%, 30% 50%, 60% 70%;
+  background-size: 300px, 300px, 700px, 150px;
   background-repeat: no-repeat;
+}
+
+.baby {
+  background-image: none;
 }
 
 #content-box {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 20%;
   min-width: 350px;
   padding: 10%;
 }
 
 #text {
   line-height: 1.8;
+}
+
+#content-box-baby {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  min-width: 350px;
+  padding: 3%;
+  background-color: white;
 }

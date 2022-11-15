@@ -14,13 +14,13 @@ export function Budle({ budle }) {
     } else if (age >= 12) {
       let years = Math.floor(age / 12);
       if (years === 1) {
-        return '1 year old';
+        return '1 year';
       } else {
-        return `${years} years old`;
+        return `${years} years`;
       }
     }
   }
-  console.log(budle.age);
+
   return (
     <div className="budle-container">
       <div className="budle-heading">
