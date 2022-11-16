@@ -10,6 +10,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 export default function Dashboard() {
   const { currentUser } = useAuth();
   const userId = currentUser.uid;
+  console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [babyName, setBabyName] = useState();
@@ -73,6 +74,7 @@ export default function Dashboard() {
                 currentUser={currentUser}
                 babyBirth={babyBirth}
                 setBabyBirth={setBabyBirth}
+                setShowCreate={setShowCreate}
               />
             ) : null}
           </div>

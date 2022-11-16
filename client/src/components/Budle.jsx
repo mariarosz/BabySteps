@@ -26,7 +26,6 @@ export function Budle({ budle }) {
       <div className="budle-heading">
         <h3>{calculateAgeForHeading(budle.age)}</h3>
       </div>
-      <hr />
       {budle.steps.map((step, index) => (
         <Step step={step} key={index} />
       ))}

@@ -21,7 +21,7 @@ export default function UploadWidget({ url, setUrl }) {
   }, [setUrl]);
 
   return (
-    <button id="upload" onClick={() => widgetRef.current.open()}>
+    <button id="upload" type="button" onClick={() => widgetRef.current.open()}>
       {url ? <HiCheck /> : 'Upload picture'}
     </button>
   );

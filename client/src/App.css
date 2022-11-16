@@ -55,7 +55,7 @@ img {
   align-items: center;
   box-sizing: border-box;
   margin: 2rem;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .logo-panel {
@@ -120,7 +120,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 h1 {
@@ -159,8 +160,8 @@ button:hover {
   width: 5rem;
   height: 5rem;
   position: fixed;
-  bottom: 1.5%;
-  right: 1.5%;
+  bottom: 3%;
+  right: 3%;
   border: none;
   content: '+';
   z-index: 6;
@@ -213,6 +214,7 @@ label {
 .step-container {
   position: relative;
   text-align: center;
+  max-width: 600px;
 }
 
 .step-content {

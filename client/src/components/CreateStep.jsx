@@ -1,19 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import UploadWidget from './UploadWidget';
 
-export function CreateStep({ setCreated, currentUser }) {
+export function CreateStep({
+  setCreated,
+  currentUser,
+  setShowCreate,
+  babyBirth,
+}) {
   const stepsRef = collection(db, 'steps');
   const [url, setUrl] = useState('');
+  const [title, setTitle] = useState();
+  const [date, setDate] = useState();
+  const [notes, setNotes] = useState();
+
+  /* useEffect(() => {
+    setTitle(localStorage.getItem('titleValue'));
+    setDate(localStorage.getItem('dateValue'));
+    setNotes(localStorage.getItem('notesValue'));
+  }, []); */
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     const userId = currentUser.uid;
-    const title = event.target.title.value;
-    const date = event.target.date.value;
-    const notes = event.target.notes.value;
 
     url &&
       addDoc(stepsRef, {
@@ -22,25 +32,45 @@ export function CreateStep({ setCreated, currentUser }) {
         notes,
         userId,
         url,
-      })
-        .then((data) => {
-          console.log('data added:', data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      }).catch((error) => {
+        console.log(error);
+      });
 
     setCreated(true);
-    event.target.reset();
+    setShowCreate(false);
   }
 
   return (
     <div className="create-panel">
       <h2>What's new?</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="title" placeholder="title" required />
-        <input type="text" name="notes" placeholder="notes" />
-        <input type="date" name="date" required />
+        <input
+          type="text"
+          name="title"
+          placeholder="title"
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}
+          required
+        />
+        <input
+          type="text"
+          name="notes"
+          placeholder="notes"
+          onChange={(event) => {
+            setNotes(event.target.value);
+          }}
+        />
+        <input
+          type="date"
+          name="date"
+          minDate={new Date(babyBirth)}
+          onChange={(event) => {
+            setDate(event.target.value);
+            //localStorage.setItem('dateValue', event.target.value);
+          }}
+          required
+        />
         <UploadWidget setUrl={setUrl} url={url} />
         <button type="submit">ADD</button>
       </form>

@@ -25,7 +25,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div>
       <div className="signup-container">
         <div className="signup-body">
           <h1>Login In</h1>
@@ -41,10 +41,12 @@ export default function Login() {
             </button>
           </form>
         </div>
+        <div>
+          <p id="link">
+            Need an account? <Link to="/signup">Sign Up</Link>
+          </p>
+        </div>
       </div>
-      <div>
-        Need an account? <Link to="/signup">Sign Up</Link>
-      </div>
-    </>
+    </div>
   );
 }
