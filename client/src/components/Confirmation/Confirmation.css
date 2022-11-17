@@ -4,8 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../../assets/blob-pink.svg), url(../../assets/blob-sun.svg),
-    url(../../assets/blob-beige.svg), url(../../assets/blob-blue.svg);
+  background-image: url(../../assets/svg/blob-pink.svg), url(../../assets/svg/blob-sun.svg),
+    url(../../assets/svg/blob-beige.svg), url(../../assets/svg/blob-blue.svg);
   background-position: 50% 70%, 50% 70%, 30% 50%, 60% 70%;
   background-size: 300px, 300px, 700px, 150px;
   background-repeat: no-repeat;

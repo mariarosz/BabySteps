@@ -1,10 +1,7 @@
 import React from 'react';
-<<<<<<< HEAD:client/src/components/Budle.jsx
-import { Step } from './Step/Step';
-=======
-import { Step } from '../Step';
+import { Step } from '../Step/Step';
 import './Budle.css'
->>>>>>> css:client/src/components/Budle/Budle.jsx
+
 
 export function Budle({ budle }) {
   function calculateAgeForHeading(age) {
