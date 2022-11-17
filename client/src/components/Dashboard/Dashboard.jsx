@@ -3,7 +3,7 @@ import { Navbar } from '../Navbar/Navbar';
 import Timeline from '../Timeline/Timeline';
 import { useAuth } from '../../contexts/AuthContext';
 import { CreateStep } from './../CreateStep/CreateStep';
-import { AddBaby } from './../AddBaby/AddBaby';
+import { AddBaby } from './../AddBaby/AddBaby.tsx';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'

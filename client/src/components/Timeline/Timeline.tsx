@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { Confirmation } from '../Confirmation/Confirmation';
-import { Budle } from '../Budle/Budle'
+import { Confirmation } from '../Confirmation/Confirmation.tsx';
+import { Budle } from '../Budle/Budle.tsx'
 import { addAges } from '../../utils/addAgeToStep';
 
 export default function Timeline({
