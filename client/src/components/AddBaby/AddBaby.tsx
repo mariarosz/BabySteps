@@ -5,7 +5,11 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
 import './AddBaby.css'
 
-export function AddBaby({ babyName, setBabyName, babyBirth, setBabyBirth }) {
+export interface currentUser {
+  term: string;
+}
+
+export function AddBaby({ babyName, setBabyName, setBabyBirth }) {
   const { currentUser } = useAuth();
 
   const [confirmation, setConfirmation] = useState(false);
@@ -41,7 +45,7 @@ export function AddBaby({ babyName, setBabyName, babyBirth, setBabyBirth }) {
   return (
     <div>
       {confirmation ? (
-        <Confirmation currentUser={currentUser} babyName={babyName} />
+        <Confirmation babyName={babyName} />
       ) : (
         <div className="centralised-content-container baby">
           <div id="content-box-baby">
