@@ -4,7 +4,7 @@ import './Budle.css'
 
 
 export function Budle({ budle }) {
-  function calculateAgeForHeading(age) {
+  function calculateAgeForHeading(age: number) {
     if (age === 1) {
       return '1st month';
     } else if (age === 2) {
@@ -28,7 +28,7 @@ export function Budle({ budle }) {
       <div className="budle-heading">
         <h3>{calculateAgeForHeading(budle.age)}</h3>
       </div>
-      {budle.steps.map((step, index) => (
+      {budle.steps.map((step, index: number) => (
         <Step step={step} key={index} />
       ))}
     </div>

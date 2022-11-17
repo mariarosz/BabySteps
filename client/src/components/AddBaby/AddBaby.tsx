@@ -5,10 +5,6 @@ import { collection, addDoc } from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
 import './AddBaby.css'
 
-export interface currentUser {
-  term: string;
-}
-
 export function AddBaby({ babyName, setBabyName, setBabyBirth }) {
   const { currentUser } = useAuth();
 

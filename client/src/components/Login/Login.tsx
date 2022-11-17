@@ -4,8 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Login.css'
 
 export default function Login() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const emailRef = useRef<HTMLInputElement | null>(null)
+  const passwordRef = useRef<HTMLInputElement | null>(null)
   const { login } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ export default function Login() {
     try {
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      await login(emailRef?.current?.value, passwordRef?.current?.value);
       navigate('/');
     } catch (error) {
       setError(error.message);
@@ -35,7 +35,7 @@ export default function Login() {
             <label>Email</label>
             <input type="email" ref={emailRef} required />
             <label>Password</label>
-            <input type="password" ref={passwordRef} required minLength="8" />
+            <input type="password" ref={passwordRef} required minLength={8} />
 
             <button disabled={loading} type="submit">
               Log In
