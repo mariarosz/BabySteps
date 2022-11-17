@@ -8,19 +8,12 @@ export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-  babyBirth,
 }) {
   const stepsRef = collection(db, 'steps');
   const [url, setUrl] = useState('');
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [notes, setNotes] = useState();
-
-  /* useEffect(() => {
-    setTitle(localStorage.getItem('titleValue'));
-    setDate(localStorage.getItem('dateValue'));
-    setNotes(localStorage.getItem('notesValue'));
-  }, []); */
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+  const [notes, setNotes] = useState('');
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -65,10 +58,9 @@ export function CreateStep({
         <input
           type="date"
           name="date"
-          minDate={new Date(babyBirth)}
+          // minDate={new Date(babyBirth)}     COME BACK TO THIS ERROR
           onChange={(event) => {
             setDate(event.target.value);
-            //localStorage.setItem('dateValue', event.target.value);
           }}
           required
         />

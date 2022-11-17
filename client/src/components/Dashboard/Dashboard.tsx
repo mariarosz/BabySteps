@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Navbar } from '../Navbar/Navbar.tsx';
-import Timeline from '../Timeline/Timeline.tsx';
+import { Navbar } from '../Navbar/Navbar';
+import Timeline from '../Timeline/Timeline';
 import { useAuth } from '../../contexts/AuthContext';
-import { CreateStep } from './../CreateStep/CreateStep.tsx';
-import { AddBaby } from './../AddBaby/AddBaby.tsx';
+import { CreateStep } from './../CreateStep/CreateStep';
+import { AddBaby } from './../AddBaby/AddBaby';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'
@@ -11,7 +11,7 @@ import './Dashboard.css'
 export default function Dashboard() {
   const { currentUser } = useAuth();
   console.log(currentUser)
-  const userId = currentUser.uid;
+  const userId:{} = currentUser.uid;
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
@@ -33,9 +33,9 @@ export default function Dashboard() {
         collection(db, 'users'),
         where('userId', '==', userId)
       );
-      const response = await getDocs(usersRef);
+      const response = await getDocs<any>(usersRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.UserId };
+        return { ...doc.data(), id: doc['UserId'] };
       });
     }
     getData()
@@ -71,11 +71,8 @@ export default function Dashboard() {
             </button>
             {showCreate ? (
               <CreateStep
-                created={created}
                 setCreated={setCreated}
                 currentUser={currentUser}
-                babyBirth={babyBirth}
-                setBabyBirth={setBabyBirth}
                 setShowCreate={setShowCreate}
               />
             ) : null}
@@ -85,7 +82,6 @@ export default function Dashboard() {
         <AddBaby
           babyName={babyName}
           setBabyName={setBabyName}
-          babyBirth={babyBirth}
           setBabyBirth={setBabyBirth}
         />
       )}
