@@ -3,21 +3,31 @@ import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
+import {
+  Auth,
+  UserCredential,
+  User,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from 'firebase/auth'
+
 
 export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-}) {
+}: { setCreated: Function, currentUser: User | null, setShowCreate: Function}) {
   const stepsRef = collection(db, 'steps');
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
-    const userId = currentUser.uid;
+
+    const userId = currentUser?.uid;
 
     url &&
       addDoc(stepsRef, {

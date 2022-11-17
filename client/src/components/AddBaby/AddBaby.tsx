@@ -17,6 +17,7 @@ export function AddBaby({ babyName, setBabyName, setBabyBirth }: {babyName: stri
     event.preventDefault();
 
     const userId = currentUser.uid;
+    console.log('This is userID', userId)
     const target = event.target as typeof event.target & {
       name: {value: string};
       date: {value: dateFns};

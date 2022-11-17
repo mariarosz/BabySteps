@@ -7,7 +7,8 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] =
+    (useState < firebase.User) | (null > null);
   const [loading, setLoading] = useState(true);
 
   function signup(email, password) {
