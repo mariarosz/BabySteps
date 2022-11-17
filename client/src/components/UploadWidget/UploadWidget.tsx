@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { HiCheck } from 'react-icons/hi';
 
 export default function UploadWidget({ url, setUrl }) {
-  const cloudinaryRef = useRef();
-  const widgetRef = useRef();
+  const cloudinaryRef = React.useRef(!null)
+  const widgetRef = React.useRef(!null);
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;

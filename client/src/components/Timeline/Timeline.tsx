@@ -2,8 +2,8 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { Confirmation } from '../Confirmation/Confirmation.tsx';
-import { Budle } from '../Budle/Budle.tsx'
+import { Confirmation } from '../Confirmation/Confirmation';
+import { Budle } from '../Budle/Budle'
 import { addAges } from '../../utils/addAgeToStep';
 
 export default function Timeline({
@@ -25,7 +25,7 @@ export default function Timeline({
       );
       const response = await getDocs(stepsRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.UserId };
+        return { ...doc.data(), id: doc['UserId'] };
       });
     }
     setCreated(false);
@@ -34,18 +34,49 @@ export default function Timeline({
       .then(() => console.log('im being run again on timeline'));
   }, [userId, created, setCreated, babyBirth]);
 
-  const budles = [];
-
+  interface budles {
+    [key: string]: any;
+  }
+  const budles: budles = {
+    0: 'Pregnancy',
+    1: 'Newborn',
+    2: '1-3 Months',
+    3: '3-6 Months',
+    4: '6-9 Months',
+    5: '9-12 Months',
+    6: '12-18 Months',
+    7: '18-24 Months',
+    8: '24-36 Months',
+    9: '36-48 Months',
+    10: '48-60 Months',
+  };
+  interface steps {
+    [key: string]: any;
+  }
+  const stepsByBudle: steps = {
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: [],
+    7: [],
+    8: [],
+    9: [],
+    10: [],
+  };
   for (let i = 0; i < steps.length; i++) {
-    if (budles.findIndex((budle) => budle.age === steps[i].age) >= 0) {
-      const index = budles.findIndex((budle) => budle.age === steps[i].age);
+    if (budles.findIndex((budle) => budle.age === stepsByBudle[i].age) >= 0) {
+      const index = budles.findIndex((budle) => budle.age === stepsByBudle[i].age);
       budles[index].steps.push(steps[i]);
     } else {
-      const newStep = { age: steps[i].age, steps: [] };
+      const newStep = { age: stepsByBudle[i].age, steps: [] };
       newStep.steps.push(steps[i]);
       budles.push(newStep);
     }
   }
+
 
   budles.sort((a, b) => a.age - b.age);
 

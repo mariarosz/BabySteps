@@ -3,27 +3,27 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 import img2 from '../../assets/img/step_img_placeholder2.webp';
 import './Signup.css';
-
+//write everything in typescript
 export default function Signup() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfRef = useRef();
+  const emailRef = React.useRef() as React.MutableRefObject<HTMLInputElement>
+  const passwordRef = React.useRef() as React.MutableRefObject<HTMLInputElement>
+  const passwordConfRef = React.useRef() as React.MutableRefObject<HTMLInputElement>
   const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    if (passwordRef.current.value !== passwordConfRef.current.value) {
+  async function handleSubmit(e) {
+    e.preventDefault();
+//check if password and password confirmation match in typescript
+ if (passwordRef.current.valueOf !== passwordConfRef.current.valueOf) {
       return setError('Passwords do not match.');
     }
 
     try {
       setError('');
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.valueOf, passwordRef.current.valueOf);
       navigate('/');
     } catch (error) {
       setError(error.message);
@@ -53,7 +53,7 @@ export default function Signup() {
             <label>Email</label>
             <input type="email" ref={emailRef} required />
             <label>Password</label>
-            <input type="password" ref={passwordRef} required minLength="8" />
+            <input type="password" ref={passwordRef} required  minLength= {8}/>
             <label>Password Confirmation</label>
             <input type="password" ref={passwordConfRef} required />
             <button disabled={loading} type="submit">
