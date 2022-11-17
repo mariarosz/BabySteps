@@ -3,7 +3,10 @@ import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
+<<<<<<< HEAD
 
+=======
+>>>>>>> ca9505de13f83948d08d8c6ab7cd1de4714087b8
 
 export function CreateStep({
   setCreated,
