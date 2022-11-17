@@ -2,7 +2,7 @@ import React from 'react';
 import './Confirmation.css'
 
 
-export function Confirmation({ babyName }) {
+export function Confirmation({ babyName }: { babyName: string }) {
   return (
     <div className="centralised-content-container">
       <div id="content-box">
