@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { Confirmation } from './Confirmation';
-import { Budle } from './Budle';
-import { addAges } from '../utils/addAgeToStep';
+import { Confirmation } from '../Confirmation';
+import { Budle } from '../Budle';
+import { addAges } from '../../utils/addAgeToStep';
 
 export default function Timeline({
   userId,

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, addDoc } from 'firebase/firestore';
-import UploadWidget from './UploadWidget';
+import UploadWidget from './UploadWidget/UploadWidget';
 
 export function CreateStep({
   setCreated,

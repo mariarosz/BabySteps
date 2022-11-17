@@ -1,10 +1,10 @@
 import './App.css';
-import Signup from './components/Signup';
+import Signup from './components/SignUp/Signup';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { PrivateRoute } from './components/PrivateRoute';
+// import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (

@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { CreateStep } from './CreateStep';
 import { AddBaby } from './AddBaby';
-import { Navbar } from './Navbar';
-import Timeline from './Timeline';
+import { Navbar } from './Navbar/Navbar';
+import Timeline from './Timeline/Timeline';
 import { db } from '../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
