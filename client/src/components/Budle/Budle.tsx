@@ -1,5 +1,5 @@
 import React from 'react';
-import { Step } from '../Step/Step';
+import { Step } from '../Step/Step.tsx';
 import './Budle.css'
 
 
