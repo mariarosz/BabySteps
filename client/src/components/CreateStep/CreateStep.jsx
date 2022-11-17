@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
+<<<<<<< HEAD:client/src/components/CreateStep.jsx
 import UploadWidget from './UploadWidget/UploadWidget';
+=======
+import UploadWidget from '../UploadWidget';
+import './CreateStep.css'
+>>>>>>> css:client/src/components/CreateStep/CreateStep.jsx
 
 export function CreateStep({
   setCreated,

@@ -1,0 +1,23 @@
+.main-container {
+  width: 100vw;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.create-button {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  border: none;
+  content: '+';
+  z-index: 6;
+  cursor: pointer;
+}

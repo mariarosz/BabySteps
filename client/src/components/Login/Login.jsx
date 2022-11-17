@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import './Login.css'
 
 export default function Login() {
   const emailRef = useRef();
@@ -50,3 +51,5 @@ export default function Login() {
     </div>
   );
 }
+
+//SIGNUP BODY DOENSN?T EXIST

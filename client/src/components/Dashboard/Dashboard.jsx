@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
+<<<<<<< HEAD:client/src/components/Dashboard.jsx
 import { useAuth } from '../contexts/AuthContext';
 import { CreateStep } from './CreateStep';
 import { AddBaby } from './AddBaby';
 import { Navbar } from './Navbar/Navbar';
 import Timeline from './Timeline/Timeline';
 import { db } from '../firebase';
+=======
+import { useAuth } from '../../contexts/AuthContext';
+import { CreateStep } from './../CreateStep/CreateStep';
+import { AddBaby } from './../AddBaby/AddBaby';
+import { Navbar } from '../Navbar';
+import Timeline from '../Timeline';
+import { db } from '../../firebase';
+>>>>>>> css:client/src/components/Dashboard/Dashboard.jsx
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import './Dashboard.css'
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
@@ -90,3 +100,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+//TIMELINE CONTAIENR DOESN?T EXIST

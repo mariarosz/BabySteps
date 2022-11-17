@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
-import { db } from '../firebase';
+import { useAuth } from '../../contexts/AuthContext';
+import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
-import { Confirmation } from './Confirmation';
+import { Confirmation } from '../Confirmation/Confirmation';
+import './AddBaby.css'
 
 export function AddBaby({ babyName, setBabyName, babyBirth, setBabyBirth }) {
   const { currentUser } = useAuth();
