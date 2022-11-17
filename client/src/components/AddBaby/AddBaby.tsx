@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
-import { Confirmation } from '../Confirmation/Confirmation';
+import { Confirmation } from '../Confirmation/Confirmation.tsx';
 import './AddBaby.css'
 
 export interface currentUser {

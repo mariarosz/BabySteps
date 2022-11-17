@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Navbar } from '../Navbar/Navbar';
-import Timeline from '../Timeline/Timeline';
+import { Navbar } from '../Navbar/Navbar.tsx';
+import Timeline from '../Timeline/Timeline.tsx';
 import { useAuth } from '../../contexts/AuthContext';
-import { CreateStep } from './../CreateStep/CreateStep';
-import { AddBaby } from './../AddBaby/AddBaby';
+import { CreateStep } from './../CreateStep/CreateStep.tsx';
+import { AddBaby } from './../AddBaby/AddBaby.tsx';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
+  console.log(currentUser)
   const userId = currentUser.uid;
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);

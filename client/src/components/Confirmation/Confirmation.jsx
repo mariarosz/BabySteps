@@ -1,6 +1,7 @@
 import React from 'react';
 import './Confirmation.css'
 
+
 export function Confirmation({ babyName }) {
   return (
     <div className="centralised-content-container">
