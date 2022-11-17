@@ -1,7 +1,7 @@
 import './App.css';
 import Signup from './components/Signup';
-import Dashboard from './components/Dashboard';
-import Login from './components/Login';
+import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login/Login';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute';
