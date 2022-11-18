@@ -3,14 +3,7 @@ import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
-import {
-  Auth,
-  UserCredential,
-  User,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-} from 'firebase/auth'
+import { User } from 'firebase/auth'
 
 
 export function CreateStep({

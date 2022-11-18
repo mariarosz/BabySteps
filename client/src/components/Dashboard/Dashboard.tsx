@@ -10,12 +10,11 @@ import './Dashboard.css'
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
-  console.log(currentUser)
-  const userId:{} = currentUser.uid;
+  const userId = currentUser.uid;
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
-  const [babyName, setBabyName] = useState();
+  const [babyName, setBabyName] = useState('');
   const [babyBirth, setBabyBirth] = useState();
   const babyRef = useRef(false);
 
@@ -35,7 +34,7 @@ export default function Dashboard() {
       );
       const response = await getDocs<any>(usersRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc['UserId'] };
+        return { ...doc.data(), id: doc.UserId };
       });
     }
     getData()
