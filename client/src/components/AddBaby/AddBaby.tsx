@@ -20,7 +20,7 @@ export function AddBaby({ babyName, setBabyName, setBabyBirth }: {babyName: stri
     console.log('This is userID', userId)
     const target = event.target as typeof event.target & {
       name: {value: string};
-      date: {value: dateFns};
+      date: {value: Date};
     }
     const name = target.name.value;
     const date = target.date.value;

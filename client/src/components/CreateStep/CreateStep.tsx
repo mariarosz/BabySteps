@@ -22,6 +22,12 @@ export function CreateStep({
 
     const userId = currentUser?.uid;
 
+    console.log(title,
+      date,
+      notes,
+      userId,
+      url)
+
     url &&
       addDoc(stepsRef, {
         title,

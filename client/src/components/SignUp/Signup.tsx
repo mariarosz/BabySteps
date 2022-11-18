@@ -23,7 +23,7 @@ export default function Signup() {
     try {
       setError('');
       setLoading(true);
-      await signup(emailRef.current.valueOf, passwordRef.current.valueOf);
+      await signup(emailRef.current.value, passwordRef.current.value);
       navigate('/');
     } catch (error) {
       setError(error.message);
