@@ -14,7 +14,7 @@ export function useAuth() {
   return useContext(AuthContext);
 }
 
-export function AuthProvider({ children }) {
+export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [currentUser, setCurrentUser] = useState<AppContextInterface | null>(null);
   const [loading, setLoading] = useState(true);
 

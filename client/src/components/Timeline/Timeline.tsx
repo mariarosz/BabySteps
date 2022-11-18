@@ -19,7 +19,7 @@ export default function Timeline({
   created: boolean;
   setCreated: any;
   babyName: string;
-  babyBirth: string;
+  babyBirth: any;
   setBabyName: any;
   setBabyBirth: any;
   }){
@@ -33,36 +33,36 @@ export default function Timeline({
       );
       const response = await getDocs(stepsRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc['UserId'] };
+        return { ...doc.data(), id: doc.get('UserId') };
       });
     }
     setCreated(false);
     getData()
-      .then((result) => setSteps(addAges(result, babyBirth)))
+      .then((result: any) => setSteps(addAges(result, babyBirth)))
       .then(() => console.log('im being run again on timeline'));
   }, [userId, created, setCreated, babyBirth]);
 
-  const budles = [];
+  const budles: any = [];
 
   for (let i = 0; i < steps.length; i++) {
-    if (budles.findIndex((budle) => budle.age === steps[i].age) >= 0) {
-      const index = budles.findIndex((budle) => budle.age === steps[i].age);
+    if (budles.findIndex((budle: any) => budle.age === steps[i]['age']) >= 0) {
+      const index = budles.findIndex((budle: any) => budle.age === steps[i]['age']);
       budles[index].steps.push(steps[i]);
     } else {
-      const newStep = { age: steps[i].age, steps: [] };
+      const newStep = { age: steps[i]['age'], steps: [] };
       newStep.steps.push(steps[i]);
       budles.push(newStep);
     }
   }
 
-  budles.sort((a, b) => a.age - b.age);
+  budles.sort((a: any, b: any) => a.age - b.age);
 
   return (
     <>
       {steps.length === 0 ? (
         <Confirmation babyName={babyName} />
       ) : (
-        budles.map((budle, index) => <Budle budle={budle} key={index} />)
+        budles.map((budle: any, index:number) => <Budle budle={budle} key={index} />)
       )}
     </>
   );

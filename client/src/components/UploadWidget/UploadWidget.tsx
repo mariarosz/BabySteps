@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { HiCheck } from 'react-icons/hi';
 
-export default function UploadWidget({ url, setUrl }) {
-  const cloudinaryRef = React.useRef(!null)
-  const widgetRef = React.useRef(!null);
+export default function UploadWidget({ url, setUrl }:{url: string, setUrl: Function}) {
+  const cloudinaryRef: any = React.useRef(!null)
+  const widgetRef: any = React.useRef(!null);
 
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -12,7 +12,7 @@ export default function UploadWidget({ url, setUrl }) {
         cloudName: 'dbhikwtx2',
         uploadPreset: 'k14x58cy',
       },
-      function (error, result) {
+      function (error: string, result: any) {
         if (!error && result && result.event === 'success') {
           setUrl(result.info.url);
         }

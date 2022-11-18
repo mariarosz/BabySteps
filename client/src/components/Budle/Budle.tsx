@@ -3,7 +3,7 @@ import { Step } from '../Step/Step';
 import './Budle.css'
 
 
-export function Budle({ budle } : {budle: {key: string, age: number, steps: []}}) {
+export function Budle({ budle } : {budle: {index:number,key: string, age: number, steps: []}}) {
   function calculateAgeForHeading(age: number) {
     if (age === 1) {
       return '1st month';

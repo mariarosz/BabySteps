@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import img2 from '../../assets/img/step_img_placeholder2.webp';
+// import img2 from '../../assets/img/step_img_placeholder2.png';
 import './Signup.css';
 //write everything in typescript
 export default function Signup() {
@@ -40,7 +40,7 @@ export default function Signup() {
         <div className="baby-steps-info">
           <h3 id="hero">Your Baby development journal</h3>
           <div className="step-container">
-            <img id="signup-img" src={img2} alt="img" />
+            {/* <img id="signup-img" src={img2} alt="img" /> */}
             <div className="step-content">
               <h1>First self-eaten meal</h1>
             </div>
