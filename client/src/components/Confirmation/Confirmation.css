@@ -1,16 +1,3 @@
-.centralised-content-container {
-  width: 90vw;
-  height: 80vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(../../assets/svg/blob-pink.svg), url(../../assets/svg/blob-sun.svg),
-    url(../../assets/svg/blob-beige.svg), url(../../assets/svg/blob-blue.svg);
-  background-position: 50% 80%, 50% 80%, 30% 20%, 60% 10%;
-  background-size: 300px, 300px, 700px, 150px;
-  background-repeat: no-repeat;
-}
-
 #content-box {
   display: flex;
   flex-direction: column;
