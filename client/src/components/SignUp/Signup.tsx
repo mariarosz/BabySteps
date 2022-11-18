@@ -1,36 +1,67 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import OAuth from "../../contexts/OAuth";
+import { FieldValue } from "firebase/firestore";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from '../../firebase';
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 // import img2 from '../../assets/img/step_img_placeholder2.png';
 import './Signup.css';
-//write everything in typescript
-export default function Signup() {
-  const emailRef = React.useRef() as React.MutableRefObject<HTMLInputElement>
-  const passwordRef = React.useRef() as React.MutableRefObject<HTMLInputElement>
-  const passwordConfRef = React.useRef() as React.MutableRefObject<HTMLInputElement>
-  const { signup } = useAuth();
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
-  async function handleSubmit(event: React.SyntheticEvent) {
-    event.preventDefault();
-//check if password and password confirmation match in typescript
- if (passwordRef.current.valueOf !== passwordConfRef.current.valueOf) {
-      return setError('Passwords do not match.');
-    }
+type FormDataType = {
+  email: string,
+  password?: string,
+  name: string,
+  timestamp?: FieldValue,
+}
+
+export default function SignUp() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState<FormDataType>({
+    name: "",
+    email: "",
+    password: "",
+  });
+  const { name, email, password } = formData;
+  const navigate = useNavigate();
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
+  async function onSubmit(e: React.SyntheticEvent) {
+    e.preventDefault();
 
     try {
-      setError('');
-      setLoading(true);
-      await signup(emailRef.current.valueOf, passwordRef.current.valueOf);
-      navigate('/');
-    } catch (error) {
-      setError(error.message);
-    }
-    setLoading(false);
-  }
+      const auth = getAuth();
+      const userCredential = password && await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
+      auth.currentUser && updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+      const user = userCredential && userCredential.user;
+      const formDataCopy = { ...formData };
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp();
+
+      user && await setDoc(doc(db, "users", user.uid), formDataCopy);
+      navigate("/");
+    } catch (error) {
+      toast.error("Something went wrong with the registration");
+    }
+  }
   return (
     <div className="signup-container">
       <div className="logo-panel">
@@ -48,23 +79,58 @@ export default function Signup() {
         </div>
         <div className="signup">
           <h1>Signup</h1>
-          {error && <div>{error}</div>}
-          <form onSubmit={handleSubmit}>
-            <label>Email</label>
-            <input type="email" ref={emailRef} required />
-            <label>Password</label>
-            <input type="password" ref={passwordRef} required  minLength= {8}/>
-            <label>Password Confirmation</label>
-            <input type="password" ref={passwordConfRef} required />
-            <button disabled={loading} type="submit">
-              Sign Up
-            </button>
-          </form>
           <div>
-            <p id="link">
-              Already have an account? <Link to="/login">Log in.</Link>
-            </p>
-          </div>
+        <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={onChange}
+              placeholder="Full name"
+            />
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={onChange}
+              placeholder="Email address"
+            />
+            <div>
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                onChange={onChange}
+                placeholder="Password"
+              />
+              {showPassword ? (
+                <AiFillEyeInvisible
+                  onClick={() => setShowPassword((prevState) => !prevState)}
+                />
+              ) : (
+                <AiFillEye
+                  onClick={() => setShowPassword((prevState) => !prevState)}
+                />
+              )}
+            </div>
+            <div>
+              <p id="link" >
+                Have a account?
+                <Link
+                  to="/login"
+                > Login
+                </Link>
+              </p>
+            </div>
+            <button type="submit">
+              Signup
+            </button>
+            <div>
+              <p> OR </p>
+            </div>
+            <OAuth />
+          </form>
+        </div>
         </div>
       </div>
     </div>

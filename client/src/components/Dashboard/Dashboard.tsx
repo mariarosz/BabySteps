@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from '../Navbar/Navbar';
 import Timeline from '../Timeline/Timeline';
-import { useAuth } from '../../contexts/AuthContext';
+import { getAuth } from 'firebase/auth';
 import { CreateStep } from './../CreateStep/CreateStep';
 import { AddBaby } from './../AddBaby/AddBaby';
 import { db } from '../../firebase';
@@ -9,7 +9,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'
 
 export default function Dashboard() {
-  const { currentUser } = useAuth();
+  const { currentUser } : any = getAuth();
   const userId = currentUser.uid;
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
@@ -34,7 +34,7 @@ export default function Dashboard() {
       );
       const response = await getDocs<any>(usersRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.get('UserId') }; // broken?
+        return { ...doc.data(), id: doc.get('UserId') }; 
       });
     }
     getData()

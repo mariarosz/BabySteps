@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
@@ -7,7 +7,7 @@ import { Confirmation } from '../Confirmation/Confirmation';
 import './AddBaby.css'
 
 export function AddBaby({ babyName, setBabyName, setBabyBirth }: {babyName: string, setBabyName: Function, setBabyBirth: Function}) {
-  const { currentUser } = useAuth();
+  const { currentUser }: any = getAuth();
 
   const [confirmation, setConfirmation] = useState(false);
 

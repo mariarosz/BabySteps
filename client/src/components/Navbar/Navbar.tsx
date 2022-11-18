@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
+import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+
 import './Navbar.css';
 
 export function Navbar({ babyName } : {babyName: string}) {
   const [error, setError] = useState('');
-  const { logout } = useAuth();
   const navigate = useNavigate();
-
   async function handleLogout() {
     setError('');
 
     try {
-      await logout();
+      await signOut( getAuth());
       navigate('/login');
     } catch (error) {
       setError('Unable to log out.');
@@ -24,7 +23,7 @@ export function Navbar({ babyName } : {babyName: string}) {
       <h1>{babyName}'s Steps</h1>
       {error && <div>{error}</div>}
 
-      <button className="logout" onClick={handleLogout}>
+      <button className="logout" onClick={handleLogout} >
         Log Out
       </button>
     </div>
