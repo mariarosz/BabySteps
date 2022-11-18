@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 
-export function Navbar({ babyName }) {
+export function Navbar({ babyName } : {babyName: string}) {
   const [error, setError] = useState('');
   const { logout } = useAuth();
   const navigate = useNavigate();
