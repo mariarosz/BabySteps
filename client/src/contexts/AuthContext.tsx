@@ -1,49 +1,25 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { auth } from '../firebase';
+import { useEffect, useState } from "react"; //useContext,
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-interface AppContextInterface {
-  currentUser: any,
-  signup: Function,
-  login: Function,
-  logout: Function,
-}
 
-const AuthContext = React.createContext<AppContextInterface | null | any>(null);
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [currentUser, setCurrentUser] = useState<AppContextInterface | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  function signup(email: string, password: string) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
-
-  function login(email: string, password: string) {
-    return auth.signInWithEmailAndPassword(email, password);
-  }
-
-  function logout() {
-    return auth.signOut();
-  }
+export default function useAuthStatus() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [checkingStatus, setCheckingStatus] = useState(true);
+  const [currentUser, setCurrentUser] : any = useState(null)
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user: any) => {
-      setCurrentUser(user);
-      setLoading(false);
+    const auth = getAuth();
+    console.log(auth);
+    onAuthStateChanged(auth, (currentUser) => {
+      console.log('user at auth hook',currentUser)
+      if (currentUser) {
+        setLoggedIn(true);
+        setCurrentUser(currentUser);
+      }
+      setCheckingStatus(false);
     });
-
-    return unsubscribe;
   }, []);
-
-  const AppContext: AppContextInterface = { currentUser, signup, login, logout };
-
-  return (
-    <AuthContext.Provider value={AppContext}>
-      {!loading && children}
-    </AuthContext.Provider>
-  );
+  return { currentUser, loggedIn, checkingStatus };
 }

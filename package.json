@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mariarosz/BabySteps/issues"
   },
-  "homepage": "https://github.com/mariarosz/BabySteps#readme"
+  "homepage": "https://github.com/mariarosz/BabySteps#readme",
+  "dependencies": {
+    "react-toastify": "^9.1.1"
+  }
 }

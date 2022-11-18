@@ -1,12 +1,11 @@
-//import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { useAuth } from '../contexts/AuthContext';
+import { getAuth } from 'firebase/auth';
 
 export function DBService() {
-  const { currentUser } = useAuth();
+  const { currentUser } = getAuth();
 
-  const userId = currentUser.uid;
+  const userId = currentUser?.uid;
   console.log(userId);
   const stepsRef = query(
     collection(db, 'steps'),
@@ -15,4 +14,5 @@ export function DBService() {
   return getDocs(stepsRef).then((response) => response.docs);
 }
 
-//module.exports = { DBService };
+
+

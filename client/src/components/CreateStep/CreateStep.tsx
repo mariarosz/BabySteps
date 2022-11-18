@@ -4,6 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
 import { User } from 'firebase/auth'
+// import {getAuth} from 'firebase/auth'
 
 
 export function CreateStep({
@@ -20,14 +21,8 @@ export function CreateStep({
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
+    // const auth = getAuth();
     const userId = currentUser?.uid;
-
-    console.log(title,
-      date,
-      notes,
-      userId,
-      url)
-
     url &&
       addDoc(stepsRef, {
         title,
@@ -67,7 +62,6 @@ export function CreateStep({
         <input
           type="date"
           name="date"
-          // minDate={new Date(babyBirth)}     COME BACK TO THIS ERROR
           onChange={(event) => {
             setDate(event.target.value);
           }}
