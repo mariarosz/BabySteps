@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100;0,200;0,300;0,600;1,100&display=swap');
 
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
 h1,
 h2 {
   font-family: 'Libre Baskerville', serif;
@@ -35,8 +40,9 @@ img {
   margin-bottom: 15%;
 }
 
-.main-container {
+/* .main-container {
   width: 100vw;
+  height: 100vh;
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -122,7 +128,7 @@ img {
   align-items: center;
   gap: 1rem;
   margin-top: 1rem;
-}
+} */
 
 h1 {
   margin: 0;
@@ -131,12 +137,12 @@ h1 {
   font-size: 1.5rem;
 }
 
-.budle-heading {
+/* .budle-heading {
   padding-top: 3%;
   background-image: url(./assets/svg/blob-sun.svg);
   background-position: 100% 700%;
   background-repeat: no-repeat;
-}
+} */
 button {
   background-color: #f0e7d7;
   border: solid 1px #f0e7d7;
@@ -154,7 +160,7 @@ button:hover {
   border: none;
   color: white;
 }
-
+/*
 .create-button {
   border-radius: 50%;
   width: 5rem;
@@ -187,7 +193,7 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 form {
   display: flex;
@@ -209,7 +215,7 @@ label {
   text-transform: uppercase;
   font-size: 0.8rem;
   font-weight: 300;
-}
+/* }
 
 .step-container {
   position: relative;
@@ -268,4 +274,5 @@ label {
   min-width: 350px;
   padding: 3%;
   background-color: white;
+} */
 }
