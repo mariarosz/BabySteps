@@ -11,7 +11,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
     try {
@@ -19,7 +19,7 @@ export default function Login() {
       setLoading(true);
       await login(emailRef?.current?.value, passwordRef?.current?.value);
       navigate('/');
-    } catch (error) {
+    } catch (error: any) {
       setError(error.message);
     }
     setLoading(false);
