@@ -34,7 +34,7 @@ export default function Dashboard() {
       );
       const response = await getDocs<any>(usersRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.UserId };
+        return { ...doc.data(), id: doc.get('UserId') }; // broken?
       });
     }
     getData()
