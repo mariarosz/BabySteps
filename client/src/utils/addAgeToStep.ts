@@ -1,7 +1,7 @@
 import { differenceInMonths } from 'date-fns';
 
-export function addAges(steps, babyBirth) {
-  function calculateAge(birth, event) {
+export function addAges(steps: any[], babyBirth: any) {
+  function calculateAge(birth: string | number | Date, event: string | number | Date) {
     let result = differenceInMonths(new Date(event), new Date(birth));
     return (result = result + 1);
   }
