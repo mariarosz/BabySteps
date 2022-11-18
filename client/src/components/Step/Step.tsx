@@ -1,7 +1,7 @@
 import React from 'react';
 import './Step.css';
 
-export function Step({ step }) {
+export function Step({ step }: {step: any}) {
   return (
     <div className="step-container">
       <img src={step.url} alt="img" />

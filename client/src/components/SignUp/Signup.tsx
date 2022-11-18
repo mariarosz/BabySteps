@@ -13,8 +13,8 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(event: React.SyntheticEvent) {
+    event.preventDefault();
 //check if password and password confirmation match in typescript
  if (passwordRef.current.valueOf !== passwordConfRef.current.valueOf) {
       return setError('Passwords do not match.');
