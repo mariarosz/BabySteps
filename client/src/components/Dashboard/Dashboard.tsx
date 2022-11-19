@@ -9,8 +9,11 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'
 
 export default function Dashboard() {
+  const test = getAuth();
+  console.log('first output from getAuth', test)
   const { currentUser } : any = getAuth();
-  const userId = currentUser.uid;
+  console.log(currentUser)
+  const userId = currentUser.uid
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
@@ -34,7 +37,7 @@ export default function Dashboard() {
       );
       const response = await getDocs<any>(usersRef);
       return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.get('UserId') }; 
+        return { ...doc.data(), id: doc.get('UserId') };
       });
     }
     getData()
@@ -52,9 +55,9 @@ export default function Dashboard() {
 
   return (
     <div className="main-container">
-      {currentUser.uid && babyRef.current ? (
         <>
           <Navbar babyName={babyName} />
+      {currentUser.uid && babyRef.current ? (
           <div className="timeline-container">
             <Timeline
               userId={userId}
@@ -76,7 +79,6 @@ export default function Dashboard() {
               />
             ) : null}
           </div>
-        </>
       ) : (
         <AddBaby
           babyName={babyName}
@@ -84,6 +86,7 @@ export default function Dashboard() {
           setBabyBirth={setBabyBirth}
         />
       )}
+      </>
     </div>
   );
 }

@@ -28,8 +28,6 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  margin: 2rem;
-  overflow: scroll;
 }
 
 .logo-panel {
@@ -56,8 +54,6 @@
   background-position: bottom right, 50% 80%, 1% 1%;
   background-repeat: no-repeat;
   gap: 6%;
-  margin-left: 5%;
-  margin-right: 5%;
 }
 
 .baby-steps-info {
