@@ -10,31 +10,30 @@ import { Navbar } from '../Navbar/Navbar';
 
 import '@testing-library/jest-dom';
 
-jest.mock('node-fetch');
-jest.mock('firebase/auth');
+import firebase from 'firebase/app';
 
-const currentUserMock = {
-  uid: '21332312',
-  name: 'username',
-};
-
-jest.mock('firebase/auth', () => {
-  const authInstance = {
-    currentUser: currentUserMock,
-  };
+jest.mock('firebase/app', () => {
   return {
-    getAuth: jest.fn(() => 'test123'),
+    auth: jest.fn(),
   };
 });
 
-// getAuth.mockReturnValue('test123');
+describe('61408137', () => {
+  it('should return user', () => {
+    (firebase.auth = jest.Mocked).mockReturnValueOnce({
+      currentUser: { email: 'example@gmail.com', uid: 1, emailVerified: true },
+    });
+    const actual = App.getLoggedInUser();
+    expect(actual).toEqual({
+      email: 'example@gmail.com',
+      userId: 1,
+      isEmailVerified: true,
+    });
+  });
 
-describe('Dashboard Component', () => {
-  test.only('it should render the Dashboard component', () => {
-    render(<Dashboard />);
-
-    // const navbar = screen.getByRole('heading', { name: /log in/i });
-
-    // expect(navbar).toBeInTheDocument;
+  it('should return undefined', () => {
+    (firebase.auth = jest.Mocked).mockReturnValueOnce({});
+    const actual = App.getLoggedInUser();
+    expect(actual).toBeUndefined();
   });
 });

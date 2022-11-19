@@ -10,8 +10,8 @@ describe('Dashboard Component', () => {
   test('it should render the login component', () => {
     render(<Login />, { wrapper: BrowserRouter });
 
-    const navbar = screen.getByRole('heading', { name: /log in/i });
+    const header = screen.getByRole('heading', { name: /log in/i });
 
-    expect(navbar).toBeInTheDocument;
+    expect(header).toBeInTheDocument;
   });
 });
