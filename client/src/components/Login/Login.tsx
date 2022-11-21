@@ -41,7 +41,7 @@ export default function SignIn() {
     <div>
       <div className="signup-container">
         <div className="signup-body">
-          <h1>Login In</h1>
+          <h1>Log In</h1>
           <div>
           <form onSubmit={onSubmit}>
             <input

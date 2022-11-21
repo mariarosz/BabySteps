@@ -1,6 +1,17 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import '@testing-library/jest-dom';
-import Fetch from './fetch';
+import { BrowserRouter } from 'react-router-dom';
 
-test('submits the data from the form', () => {});
+import { AddBaby } from './AddBaby';
+
+import '@testing-library/jest-dom';
+
+describe('AddBaby Component', () => {
+  test('it should render the AddBaby component', () => {
+    render(<AddBaby />, { wrapper: BrowserRouter });
+
+    const navbar = screen.getByRole('heading', { name: /little one/i });
+
+    expect(navbar).toBeInTheDocument;
+  });
+});
