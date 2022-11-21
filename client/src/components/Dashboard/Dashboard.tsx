@@ -6,8 +6,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'
 import ChildView from './../ChildView/ChildView';
 import { Link } from "react-router-dom";
-import { AddBaby } from '../AddBaby/AddBaby';
-import { CreateStep } from '../CreateStep/CreateStep';
+
 
 
 
