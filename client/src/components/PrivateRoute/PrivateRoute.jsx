@@ -1,23 +1,11 @@
-import React from 'react';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { Outlet, Navigate } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import useAuthStatus from "../../contexts/AuthContext";
 
-export function PrivateRoute() {
-  const { currentUser } = useAuth();
-
-  // return (
-  //   <Route
-  //     {...rest}
-  //     render={(props) => {
-  //       return currentUser ? (
-  //         <Component {...props} />
-  //       ) : (
-  //         <Navigate to="/login" />
-  //       );
-  //     }}
-  //   ></Route>
-  const navigate = useNavigate();
-  if (!currentUser) navigate('/signup');
-  // console.log(currentUser);
-  return <Outlet />;
+export default function PrivateRoute() {
+  const { loggedIn, checkingStatus } = useAuthStatus();
+    if (checkingStatus) {
+      return <Loader />;
+      }
+  return loggedIn ? <Outlet /> : <Navigate to="/login" />;
 }

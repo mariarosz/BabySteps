@@ -57,7 +57,7 @@ export default function Dashboard() {
   return (
     <div className="main-container">
         <>
-          <Navbar babyName={babyName} />
+          {/* <Navbar babyName={babyName} /> */}
       {currentUser.uid && babyRef.current ?
           <ChildView /> : null }
 

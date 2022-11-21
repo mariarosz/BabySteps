@@ -1,31 +1,47 @@
-import React, { useState } from 'react';
-import { getAuth, signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import './Navbar.css';
 
-export function Navbar({ babyName } : {babyName: string}) {
-  const [error, setError] = useState('');
+export function Navbar() {
+  const [pageState, setPageState] = useState("Sign in");
+  const location = useLocation();
   const navigate = useNavigate();
-  async function handleLogout() {
-    setError('');
-
-    try {
-      await signOut( getAuth());
-      navigate('/login');
-    } catch (error) {
-      setError('Unable to log out.');
+  const auth = getAuth();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("Dashboard");
+      } else {
+        setPageState("Login");
+      }
+    });
+  }, [auth]);
+  function pathMatchRoute(route: string) {
+    if (route === location.pathname) {
+      return true;
     }
   }
 
   return (
     <div className="header">
-      <h1>{babyName}'s Steps</h1>
-      {error && <div>{error}</div>}
-
-      <button className="logout" onClick={handleLogout} >
-        Log Out
-      </button>
+      <h1>Baby Steps</h1>
+      <li
+        className={`${
+          (pathMatchRoute("/login") || pathMatchRoute("/dashboard"))
+      }`}
+      onClick={() => navigate("/dashboard")}
+      >
+        {pageState}
+        </li>
+        <li
+        className={`${
+          (pathMatchRoute("/signup"))
+        }`}
+      onClick={() => navigate("/signup")}
+      >
+        Sign up
+      </li>
     </div>
   );
 }
