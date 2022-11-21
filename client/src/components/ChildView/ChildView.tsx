@@ -52,7 +52,6 @@ export default function Dashboard() {
   }, [userId, babyName]);
 
   return (
-    <div className="main-container">
         <>
           <div className="timeline-container">
             <Timeline
@@ -76,7 +75,6 @@ export default function Dashboard() {
             ) : null}
           </div>
       </>
-    </div>
   );
 }
 

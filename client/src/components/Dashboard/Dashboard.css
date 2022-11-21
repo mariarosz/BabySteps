@@ -1,11 +1,74 @@
-.main-container {
+/* .dash-container {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   box-sizing: border-box;
+} */
+
+.dash-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+  color: white;
+}
+
+
+.dash-btns-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baby-selector {
+  margin: 2rem;
+  background-color: #c59155;
+  border-radius: 20px;
+  padding: 10px;
+  height: 15rem;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.current-baby {
+  background-image: url('https://media.istockphoto.com/id/506400644/photo/newborn-baby-boy-floating-on-a-swim-ring.jpg?s=612x612&w=0&k=20&c=lNT75QpNN4ZhSUS-JtBoJ04cc5bIUPVJ7ZbQlILcVRk=');
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(100%);
+  background-blend-mode: screen;
+
+}
+
+.baby-selector:hover {
+  background-color: antiquewhite;
+  color: black;
+}
+
+.baby-selector span {
+  font-size: 80px;
+  transform: translate(0px, -10px);
+}
+
+.baby-selector p {
+  position: absolute;
+  bottom: 5px;
+  font-weight: bold;
+}
+
+.add-baby:hover {
+  cursor: pointer;
+}
+
+.dash-btns-cont img {
+  max-width: 200px;
 }
 
 .create-button {
