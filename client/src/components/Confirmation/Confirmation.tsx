@@ -16,7 +16,7 @@ export function Confirmation({ babyName }: { babyName: string }) {
         </p>
 
         <p>Enjoy every little step of your way!</p>
-        <Link to={'/dashboard'}><button>Let's get started</button></Link>
+        <Link to={'/dashboard'}><button className='btn-get-started'>Let's get started</button></Link>
       </div>
     </div>
 

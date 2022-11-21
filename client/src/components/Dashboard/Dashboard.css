@@ -44,17 +44,29 @@ a {
 }
 
 .current-baby {
-  background-image: url('https://media.istockphoto.com/id/506400644/photo/newborn-baby-boy-floating-on-a-swim-ring.jpg?s=612x612&w=0&k=20&c=lNT75QpNN4ZhSUS-JtBoJ04cc5bIUPVJ7ZbQlILcVRk=');
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: saturate(0%);
-  background-blend-mode: screen;
+  background-color: #c59155;
 
 }
 
+.current-baby::before {
+  content: "";
+  background-color: #ffffff;
+  background-size: cover;
+  background-image: url('https://media.istockphoto.com/id/506400644/photo/newborn-baby-boy-floating-on-a-swim-ring.jpg?s=612x612&w=0&k=20&c=lNT75QpNN4ZhSUS-JtBoJ04cc5bIUPVJ7ZbQlILcVRk=');
+  background-blend-mode: luminosity;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 0.25;
+  border-radius: 20px;
+}
+
 .baby-selector:hover {
-  background-color: antiquewhite;
   color: black;
+  background-color: #f0e7d7;
+  opacity: 0.8;
 }
 
 .baby-selector span {
