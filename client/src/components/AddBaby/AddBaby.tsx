@@ -6,7 +6,8 @@ import { Confirmation } from '../Confirmation/Confirmation';
 
 import './AddBaby.css'
 
-export function AddBaby({ babyName, setBabyName, setBabyBirth }: {babyName: string, setBabyName: Function, setBabyBirth: Function}) {
+export function AddBaby({setBabyBirth, setBabyName, babyName}: {setBabyBirth: Function, setBabyName: Function, babyName: string }) {
+
   const { currentUser }: any = getAuth();
 
   const [confirmation, setConfirmation] = useState(false);

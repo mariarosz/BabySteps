@@ -6,14 +6,12 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import './Dashboard.css'
 import ChildView from './../ChildView/ChildView';
 import { Link } from "react-router-dom";
+import { AddBaby } from '../AddBaby/AddBaby';
 
 
 
 export default function Dashboard() {
-  const test = getAuth();
-  console.log('first output from getAuth', test)
   const { currentUser } : any = getAuth();
-  console.log(currentUser)
   const userId = currentUser.uid
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
@@ -57,7 +55,7 @@ export default function Dashboard() {
 
   return (
     <div className="main-container">
-      <Navbar babyName={babyName} />
+      <Navbar />
       <div className='dash-container'>
         <div className='dash-btns-cont'>
         <Link to={babyName}>

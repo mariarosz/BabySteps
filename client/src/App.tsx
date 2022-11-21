@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Loader from "./components/Loader/Loader";
 import ChildView from './components/ChildView/ChildView';
+import { AddBaby } from "./components/AddBaby/AddBaby";
 
 const App = () => {
   const [loaded, setLoaded] = useState(true);
