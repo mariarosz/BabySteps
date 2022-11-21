@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Loader from "./components/Loader/Loader";
+import ChildView from './components/ChildView/ChildView';
 
 const App = () => {
   const [loaded, setLoaded] = useState(true);
@@ -17,7 +18,6 @@ const App = () => {
       clearTimeout(timer);
     };
   }, []);
-
   return (
     <>
     <BrowserRouter>
@@ -32,6 +32,10 @@ const App = () => {
           </Route>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/" element={<PrivateRoute />}> */}
+          <Route path="/baby/:name" element={<ChildView />} />
+          {/* </Route> */}
+
         </Routes>
       )}
     </BrowserRouter>
