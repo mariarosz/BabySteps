@@ -7,6 +7,7 @@ import './Dashboard.css'
 import ChildView from './../ChildView/ChildView';
 import { Link } from "react-router-dom";
 import { AddBaby } from '../AddBaby/AddBaby';
+import { CreateStep } from '../CreateStep/CreateStep';
 
 
 
@@ -63,10 +64,12 @@ export default function Dashboard() {
             <p>{babyName}</p>
           </div>
         </Link>
+        <Link to={'/addbaby'}>
           <div className='baby-selector add-baby'>
             <span>+</span>
             <p>Add new baby</p>
           </div>
+        </Link>
         </div>
       </div>
     </div>

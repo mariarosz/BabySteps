@@ -38,6 +38,11 @@
   position: relative;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit; /* no underline */
+}
+
 .current-baby {
   background-image: url('https://media.istockphoto.com/id/506400644/photo/newborn-baby-boy-floating-on-a-swim-ring.jpg?s=612x612&w=0&k=20&c=lNT75QpNN4ZhSUS-JtBoJ04cc5bIUPVJ7ZbQlILcVRk=');
   background-repeat: no-repeat;
