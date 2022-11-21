@@ -3,11 +3,8 @@ import { Navbar } from '../Navbar/Navbar';
 import Timeline from '../Timeline/Timeline';
 import { getAuth } from 'firebase/auth';
 import { CreateStep } from './../CreateStep/CreateStep';
-import { AddBaby } from './../AddBaby/AddBaby';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import './Dashboard.css'
-import ChildView from './../ChildView/ChildView';
 
 export default function Dashboard() {
   const test = getAuth();
@@ -57,10 +54,27 @@ export default function Dashboard() {
   return (
     <div className="main-container">
         <>
-          <Navbar babyName={babyName} />
-      {currentUser.uid && babyRef.current ?
-          <ChildView /> : null }
-
+          <div className="timeline-container">
+            <Timeline
+              userId={userId}
+              created={created}
+              setCreated={setCreated}
+              babyName={babyName}
+              setBabyName={setBabyName}
+              babyBirth={babyBirth}
+              setBabyBirth={setBabyBirth}
+            />
+            <button className="create-button" onClick={handleCreate}>
+              {showCreate ? <h3>x</h3> : <h2>+</h2>}
+            </button>
+            {showCreate ? (
+              <CreateStep
+                setCreated={setCreated}
+                currentUser={currentUser}
+                setShowCreate={setShowCreate}
+              />
+            ) : null}
+          </div>
       </>
     </div>
   );
