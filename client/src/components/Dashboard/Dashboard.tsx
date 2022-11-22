@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Navbar } from '../Navbar/Navbar';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, getDoc, doc } from 'firebase/firestore';
 import './Dashboard.css'
 import ChildView from './../ChildView/ChildView';
 import { Link } from "react-router-dom";
@@ -13,56 +13,56 @@ import { Link } from "react-router-dom";
 export default function Dashboard() {
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
-  console.log('User ID from dashboard:', currentUser.uid);
-  const [showCreate, setShowCreate] = useState(false);
+  console.log('User ID from dashboard:', userId);
+  // const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [babyName, setBabyName] = useState('');
+  const [babyList, setBabyList] = useState<Baby[]>([]);
   const [babyBirth, setBabyBirth] = useState();
   const babyRef = useRef(false);
 
-
-  function handleCreate() {
-    if (showCreate) {
-      setShowCreate(false);
-    } else {
-      setShowCreate(true);
-    }
+  type Baby = {
+    name: string,
+    date: string,
   }
 
   useEffect(() => {
     async function getData() {
-      const usersRef = query(
-        collection(db, 'users'),
-        where('userId', '==', userId)
-      );
-      const response = await getDocs<any>(usersRef);
-      return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.get('UserId') };
-      });
+      try {
+        const userIdQuery = doc(db, 'users', userId);
+        const response = await getDoc<any>(userIdQuery);
+        const userData = response.data()
+        return userData.babies.map((baby:any) => {
+          return baby;
+        });
+      } catch(error) {
+        console.log(error)
+      }
     }
     getData()
       .then((result) => {
         babyRef.current = true;
-        setBabyName(result[0].name);
+        setBabyList(result)
       })
       .catch((err) => {
         console.log(err);
       });
-    getData()
-      .then((result) => setBabyBirth(result[0].date))
-      .catch((err) => console.log(err));
   }, [userId, babyName]);
+
+console.log('babylist: ', babyList)
 
   return (
     <div className="main-container">
       <Navbar />
       <div className='dash-container'>
         <div className='dash-btns-cont'>
-        <Link to={babyName}>
-          <div className='baby-selector current-baby'>
-            <p>{babyName}</p>
-          </div>
-        </Link>
+        {babyList.map(baby =>
+          <Link to={baby.name}>
+            <div className='baby-selector current-baby'>
+              <p>{baby.name}</p>
+            </div>
+          </Link>)}
+
         <Link to={'/addbaby'}>
           <div className='baby-selector add-baby'>
             <span>+</span>
