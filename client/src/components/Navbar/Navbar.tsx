@@ -33,7 +33,7 @@ export function Navbar() {
         className={`${
           (pathMatchRoute("/") || pathMatchRoute("/dashboard"))
       }`}
-      onClick={() => navigate("/dashboard")} >
+      onClick={() => navigate("/login")} >
           <button >Log In</button>
         </li>
         <li
