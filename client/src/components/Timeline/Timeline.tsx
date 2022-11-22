@@ -12,16 +12,12 @@ export default function Timeline({
   setCreated,
   babyName,
   babyBirth,
-  setBabyName,
-  setBabyBirth,
 }: {
   userId: string;
   created: boolean;
   setCreated: any;
   babyName: string;
   babyBirth: any;
-  setBabyName: any;
-  setBabyBirth: any;
   }){
   const [steps, setSteps] = useState([]);
 

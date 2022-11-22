@@ -4,21 +4,49 @@ import Timeline from '../Timeline/Timeline';
 import { getAuth } from 'firebase/auth';
 import { CreateStep } from './../CreateStep/CreateStep';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDoc, doc } from 'firebase/firestore';
 import './ChildView.css';
 import  GlobalContext,{GlobalContextProvider}  from '../../contexts/GlobalContext';
+import { useParams } from 'react-router-dom';
+
 export default function ChildView() {
-  const test = getAuth();
-  console.log('first output from getAuth', test);
-  const { currentUser } : any = getAuth();
-  console.log(currentUser)
-  const userId = currentUser.uid
-  console.log('User ID from dashboard:', currentUser.uid);
+
+  const {name} = useParams();
+  const babyName = name;
+
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
-  const {babyName, setBabyName} = useContext(GlobalContext);
-  const [babyBirth, setBabyBirth] = useState();
+  // const {babyName, setBabyName} = useContext(GlobalContext);
+  const {babyBirth, setBabyBirth} = useContext(GlobalContext);
+  const { currentUser } : any = getAuth();
+  const userId = currentUser.uid
   const babyRef = useRef(false);
+
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const userIdQuery = doc(db, 'users', userId);
+        const response = await getDoc<any>(userIdQuery);
+        const userData = response.data()
+        console.log(userData)
+        return userData.babies.map((baby:any) => {
+          return baby;
+        });
+      } catch(error) {
+        console.log(error)
+      }
+    }
+    getData()
+      .then((result) => {
+        babyRef.current = true;
+        setBabyBirth(result.date)
+        console.log(result.date)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [userId]);
 
   function handleCreate() {
     if (showCreate) {
@@ -28,60 +56,27 @@ export default function ChildView() {
     }
   }
 
-  useEffect(() => {
-    async function getData() {
-      const usersRef = query(
-        collection(db, 'users'),
-        where('userId', '==', userId)
-      );
-      const response = await getDocs<any>(usersRef);
-      return response.docs.map((doc) => {
-        return { ...doc.data(), id: doc.get('UserId') };
-      });
-    }
-    getData()
-      .then((result) => {
-        babyRef.current = true;
-        setBabyName(result[0].name);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    getData()
-      .then((result) => setBabyBirth(result[0].date))
-      .catch((err) => console.log(err));
-  }, [userId, babyName, setBabyName]);
-
   return (
-        <><div>
-          {/* babyName = {babyName} */}
-        <Navbar />
-        </div>
-          <div className="timeline-container">
-            <Timeline
-              userId={userId}
-              created={created}
-              setCreated={setCreated}
-              babyName={babyName}
-              setBabyName={setBabyName}
-              babyBirth={babyBirth}
-              setBabyBirth={setBabyBirth}
-            />
-          <button className="create-button" onClick={handleCreate}>
-              {showCreate ? <h3>x</h3> : <h2>+</h2>}
-            </button>
-            {showCreate ? (
-              <CreateStep
-                // created={created}
-                setCreated={setCreated}
-                currentUser={currentUser}
-                // babyBirth={babyBirth}
-                // setBabyBirth={setBabyBirth}
-                setShowCreate={setShowCreate}
-              />
-            ) : null}
-          </div>
-      </>
+    <div className="main-container">
+      <Navbar />
+        {babyName ? (<Timeline
+          userId={userId}
+          created={created}
+          setCreated={setCreated}
+          babyName={babyName}
+          babyBirth={babyBirth}
+        />) : (null)}
+      <button className="create-button" onClick={handleCreate}>
+        {showCreate ? <h3>x</h3> : <h2>+</h2>}
+      </button>
+      {showCreate ? (
+        <CreateStep
+          setCreated={setCreated}
+          currentUser={currentUser}
+          setShowCreate={setShowCreate}
+        />
+      ) : null}
+    </div>
   );
 }
 

@@ -45,8 +45,6 @@ export default function Dashboard() {
       });
   }, [userId, babyList]);
 
-console.log('babylist: ', babyList)
-
   return (
     <div className="main-container">
       <Navbar />

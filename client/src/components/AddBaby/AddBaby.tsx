@@ -6,7 +6,6 @@ import { Confirmation } from '../Confirmation/Confirmation';
 
 import './AddBaby.css'
 import { Navbar } from '../Navbar/Navbar';
-import { CreateStep } from '../CreateStep/CreateStep';
 
 export function AddBaby() {
 
@@ -21,15 +20,13 @@ export function AddBaby() {
     event.preventDefault();
 
     const userId = currentUser.uid;
-    console.log('This is userID', userId)
+    console.log('This is userID from AddBaby', userId)
     const target = event.target as typeof event.target & {
       name: {value: string};
       date: {value: Date};
     }
     const name = target.name.value;
     const date = target.date.value;
-    // setBabyName(name);
-    // setBabyBirth(date);
 
     await updateDoc(usersRef, {
       babies: arrayUnion({
@@ -45,9 +42,6 @@ export function AddBaby() {
       });
 
     setConfirmation(true);
-    // setBabyName('')
-    // setBabyBirth('')
-
   };
 
 const babyName = 'placeholder'
