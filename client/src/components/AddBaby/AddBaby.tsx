@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
-import { collection, addDoc, setDoc, arrayUnion, updateDoc, doc } from 'firebase/firestore';
+import {  arrayUnion, updateDoc, doc } from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
 
 import './AddBaby.css'
@@ -31,7 +31,8 @@ export function AddBaby() {
     await updateDoc(usersRef, {
       babies: arrayUnion({
         name: name,
-        date: date
+        date: date,
+        steps: []
       })
     })
       .then(() => {

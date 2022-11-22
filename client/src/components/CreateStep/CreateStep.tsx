@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
 import { User } from 'firebase/auth'
+import {updateDoc, arrayUnion} from 'firebase/firestore'
 // import {getAuth} from 'firebase/auth'
 
 
@@ -11,31 +12,29 @@ export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-  babyName,
-}: { setCreated: Function, currentUser: User | null, setShowCreate: Function, babyName: string}) {
-  const stepsRef = collection(db, 'steps');
+}: { setCreated: Function, currentUser: User | null, setShowCreate: Function}) {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
+  const userId = currentUser?.uid;
+
+  const stepsRef = doc(db, 'users', userId, 'babies');
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
-    // const auth = getAuth();
-    const userId = currentUser?.uid;
-    url &&
-      addDoc(stepsRef, {
-        title,
-        date,
-        notes,
-        userId,
-        url,
-        babyName,
-      }).catch((error) => {
-        console.log(error);
-      });
-
+      await updateDoc(stepsRef, {
+        steps: arrayUnion({
+          title: title,
+          date: date,
+          notes: notes,
+          url: url
+        })
+    }).catch((error) => {
+      console.log(error);
+    });
+  
     setCreated(true);
     setShowCreate(false);
   }

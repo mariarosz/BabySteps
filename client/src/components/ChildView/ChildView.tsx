@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState,useContext } from 'react';
 import { Navbar } from '../Navbar/Navbar';
 import Timeline from '../Timeline/Timeline';
 import { getAuth } from 'firebase/auth';
 import { CreateStep } from './../CreateStep/CreateStep';
-import { db } from '../../firebase';
-import { collection, query, where, getDoc, doc } from 'firebase/firestore';
+// import { db } from '../../firebase';
+// import { collection, query, where, getDoc, doc } from 'firebase/firestore';
 import './ChildView.css';
-import  GlobalContext,{GlobalContextProvider}  from '../../contexts/GlobalContext';
+import  GlobalContext from '../../contexts/GlobalContext';
 import { useParams } from 'react-router-dom';
 
 export default function ChildView() {
@@ -48,7 +48,6 @@ export default function ChildView() {
           setCreated={setCreated}
           currentUser={currentUser}
           setShowCreate={setShowCreate}
-          babyName={babyName}
         />
       ) : null}
     </div>
