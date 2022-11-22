@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
-import { doc } from 'firebase/firestore';
+import { collection, doc } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
 import { User } from 'firebase/auth'

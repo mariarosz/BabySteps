@@ -17,6 +17,7 @@ export default function Dashboard() {
   const [babyList, setBabyList] = useState<Baby[]>([]);
   const babyRef = useRef(false);
 
+  console.log('babylist: ', babyList)
   type Baby = {
     name: string,
     date: string,
@@ -29,6 +30,7 @@ export default function Dashboard() {
         const response = await getDoc<any>(userIdQuery);
         const userData = response.data()
         return userData.babies.map((baby:any) => {
+          console.log('baby :', baby)
           return baby;
         });
       } catch(error) {
@@ -43,19 +45,19 @@ export default function Dashboard() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userId, babyList]);
+  }, [userId]);
 
   return (
     <div className="main-container">
       <Navbar />
       <div className='dash-container'>
         <div className='dash-btns-cont'>
-        {babyList.map(baby =>
+        {babyList ? babyList.map(baby =>
           <Link to={baby.name}>
             <div className='baby-selector current-baby'>
               <p>{baby.name}</p>
             </div>
-          </Link>)}
+          </Link>) : (null)}
 
         <Link to={'/addbaby'}>
           <div className='baby-selector add-baby'>
