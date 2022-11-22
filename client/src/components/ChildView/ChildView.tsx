@@ -43,7 +43,7 @@ export default function ChildView() {
       <button className="create-button" onClick={handleCreate}>
         {showCreate ? <h3>x</h3> : <h2>+</h2>}
       </button>
-      {showCreate && babyName ? (
+      {showCreate && currentUser ? (
         <CreateStep
           setCreated={setCreated}
           currentUser={currentUser}

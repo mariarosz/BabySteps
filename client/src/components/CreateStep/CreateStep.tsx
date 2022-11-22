@@ -12,12 +12,13 @@ export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-}: { setCreated: Function, currentUser: User | null, setShowCreate: Function}) {
+}: { setCreated: Function, currentUser: User, setShowCreate: Function}) {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
-  const userId = currentUser?.uid;
+
+  const userId = currentUser.uid;
 
   const stepsRef = doc(db, 'users', userId, 'babies');
 
@@ -34,7 +35,7 @@ export function CreateStep({
     }).catch((error) => {
       console.log(error);
     });
-  
+
     setCreated(true);
     setShowCreate(false);
   }
