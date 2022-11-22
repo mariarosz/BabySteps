@@ -14,11 +14,7 @@ export default function Dashboard() {
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
   console.log('User ID from dashboard:', userId);
-  // const [showCreate, setShowCreate] = useState(false);
-  const [created, setCreated] = useState(false);
-  const [babyName, setBabyName] = useState('');
   const [babyList, setBabyList] = useState<Baby[]>([]);
-  const [babyBirth, setBabyBirth] = useState();
   const babyRef = useRef(false);
 
   type Baby = {
@@ -47,7 +43,7 @@ export default function Dashboard() {
       .catch((err) => {
         console.log(err);
       });
-  }, [userId, babyName]);
+  }, [userId, babyList]);
 
 console.log('babylist: ', babyList)
 
