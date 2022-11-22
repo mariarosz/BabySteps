@@ -54,7 +54,8 @@ export default function ChildView() {
 
   return (
         <><div>
-        <Navbar babyName={babyName} />
+          {/* babyName = {babyName} */}
+        <Navbar />
         </div>
           <div className="timeline-container">
             <Timeline
@@ -71,11 +72,11 @@ export default function ChildView() {
             </button>
             {showCreate ? (
               <CreateStep
-                created={created}
+                // created={created}
                 setCreated={setCreated}
                 currentUser={currentUser}
-                babyBirth={babyBirth}
-                setBabyBirth={setBabyBirth}
+                // babyBirth={babyBirth}
+                // setBabyBirth={setBabyBirth}
                 setShowCreate={setShowCreate}
               />
             ) : null}
@@ -84,4 +85,3 @@ export default function ChildView() {
   );
 }
 
-//TIMELINE CONTAIENR DOESN?T EXIST

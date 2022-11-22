@@ -38,7 +38,7 @@ const App = () => {
           </Route>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/baby/:name" element={<ChildView />} />
+          <Route path="/dashboard/:name" element={<ChildView />} />
           <Route path="/addbaby" element={<AddBaby />} />
         </Routes>
         </GlobalContextProvider>
