@@ -40,8 +40,6 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/baby/:name" element={<ChildView />} />
           <Route path="/addbaby" element={<AddBaby />} />
-          {/* </Route> */}
-
         </Routes>
         </GlobalContextProvider>
       )}
