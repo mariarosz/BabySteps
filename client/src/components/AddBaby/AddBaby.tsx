@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
-import {  arrayUnion, updateDoc, doc } from 'firebase/firestore';
+import {  arrayUnion, updateDoc, doc, collection, addDoc } from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
 
 import './AddBaby.css'
@@ -15,6 +15,7 @@ export function AddBaby() {
   const [confirmation, setConfirmation] = useState(false);
 
   const usersRef = doc(db, 'users', userId);
+  const babyRef = collection(usersRef, 'babies')
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -28,15 +29,13 @@ export function AddBaby() {
     const name = target.name.value;
     const date = target.date.value;
 
-    await updateDoc(usersRef, {
-      babies: arrayUnion({
+    addDoc(babyRef, {
         name: name,
         date: date,
         steps: []
-      })
     })
       .then(() => {
-        console.log('data added:', name, date);
+        console.log('data added:', name, date, babyRef.id, babyRef );
       })
       .catch((error) => {
         console.log(error);
