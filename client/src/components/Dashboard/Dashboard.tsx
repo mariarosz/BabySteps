@@ -9,11 +9,9 @@ import { Link } from "react-router-dom";
 
 
 
+
 export default function Dashboard() {
-  const test = getAuth();
-  console.log('first output from getAuth', test)
   const { currentUser } : any = getAuth();
-  console.log(currentUser)
   const userId = currentUser.uid
   console.log('User ID from dashboard:', currentUser.uid);
   const [showCreate, setShowCreate] = useState(false);
@@ -65,10 +63,12 @@ export default function Dashboard() {
             <p>{babyName}</p>
           </div>
         </Link>
+        <Link to={'/addbaby'}>
           <div className='baby-selector add-baby'>
             <span>+</span>
             <p>Add new baby</p>
           </div>
+        </Link>
         </div>
       </div>
     </div>

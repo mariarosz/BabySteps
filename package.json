@@ -19,5 +19,9 @@
   "homepage": "https://github.com/mariarosz/BabySteps#readme",
   "dependencies": {
     "react-toastify": "^9.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.4.0",
+    "@types/react": "^18.0.25"
   }
 }
