@@ -56,7 +56,8 @@ export default function Timeline({
   return (
     <>
       {steps.length === 0 ? (
-        <Confirmation babyName={babyName} />
+        <p></p>
+        // <Confirmation babyName={babyName} />
       ) : (
         budles.map((budle: any, index:number) => <Budle budle={budle} key={index} />)
       )}

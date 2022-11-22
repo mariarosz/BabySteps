@@ -17,6 +17,7 @@ export function CreateStep({
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
+  const [babyName, setBabyName] = useState('');
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
@@ -30,6 +31,7 @@ export function CreateStep({
         notes,
         userId,
         url,
+        babyName,
       }).catch((error) => {
         console.log(error);
       });
