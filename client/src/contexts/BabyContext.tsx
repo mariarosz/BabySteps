@@ -1,21 +1,37 @@
 import { useEffect, useState, createContext } from "react"; //useContext,
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const BabyContext = createContext('')
-const BabyDispatchContext = createContext({})
+type GlobalContextTypes = {
+  babyName: string,
+  babyBirth: string,
+  setBabyName: React.Dispatch<React.SetStateAction<string>>,
+  setBabyBirth: React.Dispatch<React.SetStateAction<string>>
+}
 
-function BabyProvider({children}:{children: any}) {
+const GlobalContext = createContext<GlobalContextTypes>({
+  babyName: '',
+  babyBirth: '',
+  setBabyName: () => {},
+  setBabyBirth: () => {}
+})
+
+export default GlobalContext;
+
+export function GlobalContextProvider({children}:{children: any}) {
   const [babyName, setBabyName] = useState('');
   const [babyBirth, setBabyBirth] = useState('');
 
+  const context = {
+    babyName,
+    babyBirth,
+    setBabyName,
+    setBabyBirth
+  }
 
   return (
-    <BabyContext.Provider value={babyName}>
-      <BabyDispatchContext.Provider value={setBabyName}>
-        {children}
-      </BabyDispatchContext.Provider>
-    </BabyContext.Provider>
+    <GlobalContext.Provider value={context}>
+      {children}
+    </GlobalContext.Provider>
   );
 }
 
-export { BabyContext, BabyProvider, BabyDispatchContext };
