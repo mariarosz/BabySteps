@@ -9,7 +9,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Loader from "./components/Loader/Loader";
 import ChildView from './components/ChildView/ChildView';
 import { AddBaby } from "./components/AddBaby/AddBaby";
-import { BabyContext, BabyProvider } from "./contexts/BabyContext";
+import { GlobalContextProvider } from "./contexts/GlobalContext";
 
 const App = () => {
   const [loaded, setLoaded] = useState(true);
@@ -21,9 +21,6 @@ const App = () => {
     };
   }, []);
 
-  const babyDetails = useContext(BabyContext);
-
-  console.log('this is baby deets, ', babyDetails)
 
 
   return (
@@ -32,7 +29,7 @@ const App = () => {
     {loaded ? (
         <Loader />
       ) : (
-        <BabyProvider>
+        <GlobalContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -47,7 +44,7 @@ const App = () => {
           {/* </Route> */}
 
         </Routes>
-        </BabyProvider>
+        </GlobalContextProvider>
       )}
     </BrowserRouter>
     </>
