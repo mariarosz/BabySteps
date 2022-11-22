@@ -25,7 +25,7 @@ export default function OAuth() {
         });
       }
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       toast.error("Could not authorize with Google");
     }

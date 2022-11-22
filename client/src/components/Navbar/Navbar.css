@@ -18,3 +18,59 @@
   background: transparent;
   border: none;
 }
+
+button {
+  background-color: #f0e7d7;
+  border-width:  0;
+  border-radius: 5px;
+  padding: 12px;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #c59155;
+  border: none;
+  color: white;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.py-3 {
+  padding-top: 0.75rem/* 12px */;
+  padding-bottom: 0.75rem/* 12px */;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 0.75rem/* 12px */;
+  padding-right: 0.75rem/* 12px */;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding-left: 0;
+  /* push text to the right */
+  margin-left: auto;
+  margin-right: 0;
+  
+
+}

@@ -58,7 +58,7 @@ export default function SignUp() {
       formDataCopy.timestamp = serverTimestamp();
 
       user && await setDoc(doc(db, "users", user.uid), formDataCopy);
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       toast.error("Something went wrong with the registration");
     }

@@ -25,23 +25,26 @@ export function Navbar() {
 
   return (
     <div className="header">
-      <h1>Baby Steps</h1>
+        <h1 onClick={() => navigate("/")}>Baby Steps</h1>
+        <div>
+          {/* make it so that if the user is logged in, the button says "Dashboard" and if they are not logged in, the button says "Login" and if they are on the login page, the button says "Sign out" */}
+          <ul>
       <li
         className={`${
-          (pathMatchRoute("/login") || pathMatchRoute("/dashboard"))
+          (pathMatchRoute("/") || pathMatchRoute("/dashboard"))
       }`}
-      onClick={() => navigate("/dashboard")}
-      >
-        {pageState}
+      onClick={() => navigate("/dashboard")} >
+          <button >Log In</button>
         </li>
         <li
         className={`${
           (pathMatchRoute("/signup"))
         }`}
-      onClick={() => navigate("/signup")}
-      >
-        Sign up
+      onClick={() => navigate("/signup")} >
+          <button  >Sign Up</button>
       </li>
+      </ul>
+      </div>
     </div>
   );
 }

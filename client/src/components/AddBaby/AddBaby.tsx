@@ -11,7 +11,7 @@ export function AddBaby({ babyName, setBabyName, setBabyBirth }: {babyName: stri
 
   const [confirmation, setConfirmation] = useState(false);
 
-  const usersRef = collection(db, 'users');
+  const babiesRef = collection(db, 'babies');
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -27,7 +27,7 @@ export function AddBaby({ babyName, setBabyName, setBabyBirth }: {babyName: stri
     setBabyName(name);
     setBabyBirth(date);
 
-    addDoc(usersRef, {
+    addDoc(babiesRef, {
       name: name,
       date: date,
       userId: userId,

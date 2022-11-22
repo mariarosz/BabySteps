@@ -57,7 +57,7 @@ export default function Dashboard() {
 
   return (
     <div className="main-container">
-      <Navbar babyName={babyName} />
+      <Navbar />
       <div className='dash-container'>
         <div className='dash-btns-cont'>
         <Link to={babyName}>

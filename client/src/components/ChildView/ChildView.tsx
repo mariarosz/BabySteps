@@ -5,10 +5,11 @@ import { getAuth } from 'firebase/auth';
 import { CreateStep } from './../CreateStep/CreateStep';
 import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
+import './ChildView.css';
 
-export default function Dashboard() {
+export default function ChildView() {
   const test = getAuth();
-  console.log('first output from getAuth', test)
+  console.log('first output from getAuth', test);
   const { currentUser } : any = getAuth();
   console.log(currentUser)
   const userId = currentUser.uid
@@ -53,6 +54,7 @@ export default function Dashboard() {
 
   return (
         <>
+        {/* <Navbar babyName={babyName} /> */}
           <div className="timeline-container">
             <Timeline
               userId={userId}
@@ -63,13 +65,16 @@ export default function Dashboard() {
               babyBirth={babyBirth}
               setBabyBirth={setBabyBirth}
             />
-            <button className="create-button" onClick={handleCreate}>
+           <button className="create-button" onClick={handleCreate}>
               {showCreate ? <h3>x</h3> : <h2>+</h2>}
             </button>
             {showCreate ? (
               <CreateStep
+                // created={created}
                 setCreated={setCreated}
                 currentUser={currentUser}
+                // babyBirth={babyBirth}
+                // setBabyBirth={setBabyBirth}
                 setShowCreate={setShowCreate}
               />
             ) : null}
