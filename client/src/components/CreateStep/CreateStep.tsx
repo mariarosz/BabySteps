@@ -11,13 +11,13 @@ export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-}: { setCreated: Function, currentUser: User | null, setShowCreate: Function}) {
+  babyName,
+}: { setCreated: Function, currentUser: User | null, setShowCreate: Function, babyName: string}) {
   const stepsRef = collection(db, 'steps');
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
-  const [babyName, setBabyName] = useState('');
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
