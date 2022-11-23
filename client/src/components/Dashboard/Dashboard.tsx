@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 export default function Dashboard() {
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
-  console.log('User ID from dashboard:', currentUser);
   const [babyList, setBabyList] = useState<Baby[]>([]);
   const babyRef = useRef(false);
 
