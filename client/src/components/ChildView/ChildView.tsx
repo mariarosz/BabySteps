@@ -19,7 +19,7 @@ export default function ChildView() {
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [babyId, setBabyId] = useState('')
-  // const { babyBirth } = useContext(GlobalContext);
+  const { babyBirth } = useContext(GlobalContext);
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
   // const babyId = babyName + userId;
@@ -28,10 +28,9 @@ export default function ChildView() {
     const babies = query(collection(db, 'users', userId, 'babies'), where('name', '==', babyName));
     const querySnapshot = await getDocs(babies);
     querySnapshot.forEach((doc) => {
-    console.log(doc.id, ' => ', doc.data());
-    setBabyId(doc.id)
-  });
-
+      console.log(doc.id, ' => ', doc.data());
+      setBabyId(doc.id)
+    });
   }
 
   grabBabyId();
@@ -48,13 +47,14 @@ export default function ChildView() {
   return (
     <div className="main-container">
       <Navbar />
-        {/* {babyName ? (<Timeline
+        {babyName ? (<Timeline
           userId={userId}
           created={created}
           setCreated={setCreated}
           babyName={babyName}
           babyBirth={babyBirth}
-        />) : (null)} */}
+          babyId={babyId}
+        />) : (null)}
       <button className="create-button" onClick={handleCreate}>
         {showCreate ? <h3>x</h3> : <h2>+</h2>}
       </button>
@@ -63,6 +63,7 @@ export default function ChildView() {
           setCreated={setCreated}
           currentUser={currentUser}
           setShowCreate={setShowCreate}
+          babyId={babyId}
         />
       ) : null}
     </div>
