@@ -12,14 +12,14 @@ export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-}: { setCreated: Function, currentUser: User, setShowCreate: Function}) {
+  babyId,
+}: { setCreated: Function, currentUser: User, setShowCreate: Function, babyId: string}) {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
 
   const userId = currentUser.uid;
-  const babyId = '1nmt6d2eFU4mzeNfxpiA';
 
 
   const stepsRef = doc(db, 'users', userId, 'babies', babyId);

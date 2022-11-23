@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs, doc } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
 // import { Confirmation } from '../Confirmation/Confirmation';
 import { Budle } from '../Budle/Budle'
 import { addAges } from '../../utils/addAgeToStep';
@@ -27,15 +27,13 @@ export default function Timeline({
 
   useEffect(() => {
     async function getData() {
-      const stepsRef = query(
-        collection(db, 'steps', userId, 'babies', babyId),
-        where('babyId', '==', babyId)
-      );
-      const response = await getDocs(stepsRef);
-      console.log(response)
-      return response.docs.map((doc) => {
-        console.log(doc)
-        return { ...doc.data(), id: doc.get('UserId') };
+      const stepsRef = doc(db, 'users', userId, 'babies', babyId)
+
+      const response: any = await getDoc(stepsRef);
+      console.log(response.data())
+      return response.data().steps.map((doc: { data: () => { (): any; new(): any; steps: any[]; }; }) => {
+        // console.log('this is doc: ', doc.data().steps[0])
+        return doc;
       });
     }
     setCreated(false);
