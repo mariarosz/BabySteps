@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
-import { collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { collection, doc, setDoc, getDoc, } from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
 import { User } from 'firebase/auth'
@@ -19,17 +19,17 @@ export function CreateStep({
   const [notes, setNotes] = useState('');
 
   const userId = currentUser.uid;
-  const babyId = 'testBabyId';
+  const babyId = '1nmt6d2eFU4mzeNfxpiA';
 
 
-  const stepsRef = doc(db, 'users', userId, 'babies', babyId, 'steps');
+  const stepsRef = doc(db, 'users', userId, 'babies', babyId);
 
 
 
   async function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault();
 
-      await setDoc(stepsRef, {
+      await updateDoc(stepsRef, {
         steps: arrayUnion({
           title: title,
           date: date,

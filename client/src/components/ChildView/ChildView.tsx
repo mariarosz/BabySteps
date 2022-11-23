@@ -22,6 +22,7 @@ export default function ChildView() {
   const { babyBirth } = useContext(GlobalContext);
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
+  // const babyId = babyName + userId;
 
   const grabBabyId = async () => {
     const babies = query(collection(db, 'users', userId, 'babies'));
@@ -29,6 +30,7 @@ export default function ChildView() {
     querySnapshot.forEach((doc) => {
     console.log(doc.id, ' => ', doc.data());
   });
+
   }
 
   grabBabyId();
