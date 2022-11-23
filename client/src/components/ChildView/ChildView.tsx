@@ -8,6 +8,8 @@ import { CreateStep } from './../CreateStep/CreateStep';
 import './ChildView.css';
 import  GlobalContext from '../../contexts/GlobalContext';
 import { useParams } from 'react-router-dom';
+import { query, collectionGroup, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 export default function ChildView() {
 
@@ -21,6 +23,16 @@ export default function ChildView() {
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
 
+  const grabBabyId = async () => {
+    const babies = query(collectionGroup(db, 'babies'));
+    const querySnapshot = await getDocs(babies);
+    querySnapshot.forEach((doc) => {
+    console.log(doc.id, ' => ', doc.data());
+  });
+  }
+
+  grabBabyId();
+
 
   function handleCreate() {
     if (showCreate) {
@@ -33,13 +45,13 @@ export default function ChildView() {
   return (
     <div className="main-container">
       <Navbar />
-        {babyName ? (<Timeline
+        {/* {babyName ? (<Timeline
           userId={userId}
           created={created}
           setCreated={setCreated}
           babyName={babyName}
           babyBirth={babyBirth}
-        />) : (null)}
+        />) : (null)} */}
       <button className="create-button" onClick={handleCreate}>
         {showCreate ? <h3>x</h3> : <h2>+</h2>}
       </button>

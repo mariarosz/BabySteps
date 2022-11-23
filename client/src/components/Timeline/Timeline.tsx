@@ -25,7 +25,7 @@ export default function Timeline({
   useEffect(() => {
     async function getData() {
       const stepsRef = query(
-        collection(db, 'steps', userId)
+        collection(db, 'steps', userId, 'babies')
       );
       const response = await getDocs(stepsRef);
       console.log(response)

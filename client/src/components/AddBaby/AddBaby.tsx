@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
-import {  arrayUnion, updateDoc, doc, collection, addDoc } from 'firebase/firestore';
+import {  arrayUnion, updateDoc, doc, collection, addDoc, query, getDocs, where, collectionGroup } from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
 
 import './AddBaby.css'
@@ -20,6 +20,7 @@ export function AddBaby() {
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
 
+
     const userId = currentUser.uid;
     console.log('This is userID from AddBaby', userId)
     const target = event.target as typeof event.target & {
@@ -35,12 +36,11 @@ export function AddBaby() {
         steps: []
     })
       .then(() => {
-        console.log('data added:', name, date, babyRef.id, babyRef );
+        console.log('data added:', name, date );
       })
       .catch((error) => {
         console.log(error);
       });
-
     setConfirmation(true);
   };
 

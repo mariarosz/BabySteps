@@ -27,6 +27,7 @@ export default function Dashboard() {
     async function getData() {
       try {
         const userIdQuery = doc(db, 'users', userId);
+        const babyRef = collection(userIdQuery, 'babies');
         const response = await getDoc<any>(userIdQuery);
         const userData = response.data()
         console.log('userDATA: ', userData)
