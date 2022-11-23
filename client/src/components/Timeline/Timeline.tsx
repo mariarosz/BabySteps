@@ -6,11 +6,13 @@ import { collection, query, where, getDocs, doc } from 'firebase/firestore';
 import { Budle } from '../Budle/Budle'
 import { addAges } from '../../utils/addAgeToStep';
 
+
 export default function Timeline({
   userId,
   created,
   setCreated,
   babyName,
+  babyId,
   babyBirth,
 }: {
   userId: string;
@@ -18,10 +20,10 @@ export default function Timeline({
   setCreated: any;
   babyName: string;
   babyBirth: any;
+  babyId: string;
   }){
   const [steps, setSteps] = useState([]);
 // update to get all steps for a baby and sort by date
-const  babyId = '1nmt6d2eFU4mzeNfxpiA'
 
   useEffect(() => {
     async function getData() {
