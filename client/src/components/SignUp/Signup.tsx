@@ -12,7 +12,6 @@ import { db } from '../../firebase';
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// import img2 from '../../assets/img/step_img_placeholder2.png';
 import './Signup.css';
 import React from "react";
 
@@ -72,7 +71,6 @@ export default function SignUp() {
         <div className="baby-steps-info">
           <h3 id="hero">Your Baby development journal</h3>
           <div className="step-container">
-            {/* <img id="signup-img" src={img2} alt="img" /> */}
             <div className="step-content">
               <h1>First self-eaten meal</h1>
             </div>

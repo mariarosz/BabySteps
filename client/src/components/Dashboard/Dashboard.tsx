@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Navbar } from '../Navbar/Navbar';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs, getDoc, doc } from 'firebase/firestore';
+import { collection, query,getDocs } from 'firebase/firestore';
 import './Dashboard.css'
-import ChildView from './../ChildView/ChildView';
 import { Link } from "react-router-dom";
 
 
@@ -16,7 +15,6 @@ export default function Dashboard() {
   const [babyList, setBabyList] = useState<Baby[]>([]);
   const babyRef = useRef(false);
 
-  console.log('babylist: ', babyList)
   type Baby = {
     name: string,
     date: string,
@@ -29,9 +27,8 @@ export default function Dashboard() {
 
         const response = await getDocs<any>(babiesFromDb);
         const userData = response
-        console.log('userDATA: ', userData)
         return userData.docs.map((baby:any) => {
-          console.log('baby :', baby)
+
           return baby.data();
         });
       } catch(error) {
@@ -59,7 +56,6 @@ export default function Dashboard() {
               <p>{baby.name}</p>
             </div>
           </Link>) : (null)}
-
         <Link to={'/addbaby'}>
           <div className='baby-selector add-baby'>
             <span>+</span>
@@ -72,4 +68,3 @@ export default function Dashboard() {
   );
 }
 
-//TIMELINE CONTAIENR DOESN?T EXIST

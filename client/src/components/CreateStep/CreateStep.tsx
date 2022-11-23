@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 import { db } from '../../firebase';
-import { collection, doc, setDoc, getDoc, } from 'firebase/firestore';
+import {doc} from 'firebase/firestore';
 import UploadWidget from '../UploadWidget/UploadWidget';
 import './CreateStep.css'
 import { User } from 'firebase/auth'
 import {updateDoc, arrayUnion} from 'firebase/firestore'
-// import {getAuth} from 'firebase/auth'
-
 
 export function CreateStep({
   setCreated,
   currentUser,
   setShowCreate,
-}: { setCreated: Function, currentUser: User, setShowCreate: Function}) {
+  babyId,
+}: { setCreated: Function, currentUser: User, setShowCreate: Function, babyId: string }) {
   const [url, setUrl] = useState('');
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
 
   const userId = currentUser.uid;
-  const babyId = '1nmt6d2eFU4mzeNfxpiA';
 
 
   const stepsRef = doc(db, 'users', userId, 'babies', babyId);

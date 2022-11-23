@@ -1,4 +1,3 @@
-import React from 'react';
 import './Step.css';
 
 export function Step({ step }: {step: any}) {

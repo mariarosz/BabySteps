@@ -1,9 +1,5 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-
 import { Confirmation } from './Confirmation';
-
 import '@testing-library/jest-dom';
 
 const babyName = 'Filip';

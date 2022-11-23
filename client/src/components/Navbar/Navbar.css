@@ -48,16 +48,16 @@ h1 {
   cursor: pointer;
 }
 .py-3 {
-  padding-top: 0.75rem/* 12px */;
-  padding-bottom: 0.75rem/* 12px */;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 0.75rem/* 12px */;
-  padding-right: 0.75rem/* 12px */;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   max-width: 72rem;
   margin-left: auto;
   margin-right: auto;
@@ -68,9 +68,8 @@ ul {
   flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
-  /* push text to the right */
   margin-left: auto;
   margin-right: 0;
-  
+
 
 }

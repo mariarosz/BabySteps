@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { getAuth } from 'firebase/auth';
 import { db } from '../../firebase';
-import {  arrayUnion, updateDoc, doc, collection, addDoc, query, getDocs, where, collectionGroup } from 'firebase/firestore';
+import { doc, collection, addDoc} from 'firebase/firestore';
 import { Confirmation } from '../Confirmation/Confirmation';
 
 import './AddBaby.css'
@@ -22,7 +22,6 @@ export function AddBaby() {
 
 
     const userId = currentUser.uid;
-    console.log('This is userID from AddBaby', userId)
     const target = event.target as typeof event.target & {
       name: {value: string};
       date: {value: Date};

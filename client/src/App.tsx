@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import './App.css';
 import Signup from './components/SignUp/Signup';
 import Dashboard from './components/Dashboard/Dashboard';
@@ -10,7 +10,6 @@ import Loader from "./components/Loader/Loader";
 import ChildView from './components/ChildView/ChildView';
 import { AddBaby } from "./components/AddBaby/AddBaby";
 import { GlobalContextProvider } from "./contexts/GlobalContext";
-import Timeline from "./components/Timeline/Timeline";
 
 const App = () => {
   const [loaded, setLoaded] = useState(true);
