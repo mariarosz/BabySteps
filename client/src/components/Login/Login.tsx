@@ -70,7 +70,7 @@ export default function SignIn() {
               )}
             </div>
             <div>
-              <p >
+              <p>
                 Don't have a account?
                 <Link
                   to="/signup"
