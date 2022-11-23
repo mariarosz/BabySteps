@@ -3,12 +3,10 @@ import { Navbar } from '../Navbar/Navbar';
 import Timeline from '../Timeline/Timeline';
 import { getAuth } from 'firebase/auth';
 import { CreateStep } from './../CreateStep/CreateStep';
-// import { db } from '../../firebase';
-// import { collection, query, where, getDoc, doc } from 'firebase/firestore';
 import './ChildView.css';
 import  GlobalContext from '../../contexts/GlobalContext';
 import { useParams } from 'react-router-dom';
-import { query, collectionGroup, where, getDocs, collection } from 'firebase/firestore';
+import { query,where, getDocs, collection } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 export default function ChildView() {
@@ -22,7 +20,6 @@ export default function ChildView() {
   const { babyBirth } = useContext(GlobalContext);
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
-  // const babyId = babyName + userId;
 
   const grabBabyId = async () => {
     const babies = query(collection(db, 'users', userId, 'babies'), where('name', '==', babyName));

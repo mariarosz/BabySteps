@@ -6,7 +6,6 @@ export function DBService() {
   const { currentUser } = getAuth();
 
   const userId = currentUser?.uid;
-  console.log(userId);
   const stepsRef = query(
     collection(db, 'steps'),
     where('userId', '==', userId)

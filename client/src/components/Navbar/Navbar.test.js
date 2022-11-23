@@ -1,20 +1,10 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
-
 import { Navbar } from './Navbar';
-
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 
 const babyName = 'Tim';
-
-const createTestProps = (props) => ({
-  navigation: {
-    navigate: jest.fn(),
-  },
-  ...props,
-});
 
 describe('Navbar Component', () => {
   test('it should render the Navbar component', () => {

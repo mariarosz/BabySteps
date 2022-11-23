@@ -1,7 +1,4 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-
 import { CreateStep } from './CreateStep';
 import UploadWidget from './../UploadWidget/UploadWidget';
 

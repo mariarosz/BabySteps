@@ -1,15 +1,4 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
-
-import fetch, { Response } from 'node-fetch';
-
-import Dashboard from './Dashboard';
-import { Navbar } from '../Navbar/Navbar';
-
 import '@testing-library/jest-dom';
-
 import firebase from 'firebase/app';
 
 jest.mock('firebase/app', () => {

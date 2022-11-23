@@ -1,5 +1,5 @@
-import { useEffect, useState, createContext } from "react"; //useContext,
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useState, createContext } from "react"; //useContext,
+
 
 type GlobalContextTypes = {
   babyName: string,

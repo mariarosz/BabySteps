@@ -33,7 +33,6 @@ export function Navbar() {
         <h1 onClick={() => navigate("/")}>Baby Steps</h1>
         <div>
           <ul>
-            {/* if you are in home page show login and signup buttons else show dashboard  and logout button  */}
             {pathMatchRoute("/") ? (
               <>
                 <li onClick={() => navigate("/login")}>
