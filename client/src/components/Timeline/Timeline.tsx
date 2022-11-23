@@ -32,7 +32,6 @@ export default function Timeline({
       const response: any = await getDoc(stepsRef);
       console.log(response.data())
       return response.data().steps.map((doc: { data: () => { (): any; new(): any; steps: any[]; }; }) => {
-        // console.log('this is doc: ', doc.data().steps[0])
         return doc;
       });
     }
@@ -40,7 +39,7 @@ export default function Timeline({
     getData()
       .then((result: any) => setSteps(addAges(result, babyBirth)))
       .then(() => console.log('im being run again on timeline'));
-  }, [userId, created, setCreated, babyBirth]);
+  }, [userId, created, setCreated, babyBirth, babyId]);
 
   const budles: any = [];
 

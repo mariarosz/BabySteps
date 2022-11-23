@@ -12,7 +12,7 @@ export default function Loader() {
     <div className='loader'>
       <PulseBubbleLoader {...loaderProps} />
       <h2>Baby Steps</h2>
-      </div>
+    </div>
   )
 }
 

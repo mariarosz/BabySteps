@@ -9,7 +9,6 @@
   padding-bottom: 2rem;
 }
 
-
 .dash-btns-cont {
   display: flex;
   align-items: center;
@@ -18,7 +17,6 @@
 }
 
 .baby-selector {
-  margin: 2rem;
   background-color: #c59155;
   border-radius: 20px;
   padding: 10px;
@@ -30,19 +28,20 @@
   align-items: center;
   position: relative;
 }
+
 a {
   color: inherit;
   text-decoration: inherit;
+  margin: 2rem;
 }
+
 a:hover {
   color: #c59155;
   background-color: white;
 }
 
-
 .current-baby {
   background-color: #c59155;
-
 }
 
 .current-baby::before {

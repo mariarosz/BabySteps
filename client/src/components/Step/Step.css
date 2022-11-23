@@ -5,9 +5,14 @@
 }
 
 .step-content {
-  position: absolute;
+  display: flex;
   color: white;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(197, 145, 85, 0.5);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
