@@ -1,8 +1,6 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { db } from '../../firebase';
-import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
-// import { Confirmation } from '../Confirmation/Confirmation';
+import { doc, getDoc } from 'firebase/firestore';
 import { Budle } from '../Budle/Budle'
 import { addAges } from '../../utils/addAgeToStep';
 
@@ -11,7 +9,6 @@ export default function Timeline({
   userId,
   created,
   setCreated,
-  babyName,
   babyId,
   babyBirth,
 }: {
@@ -23,7 +20,6 @@ export default function Timeline({
   babyId: string;
   }){
   const [steps, setSteps] = useState([]);
-// update to get all steps for a baby and sort by date
 
   useEffect(() => {
     async function getData() {
@@ -60,7 +56,6 @@ export default function Timeline({
     <>
       {steps.length === 0 ? (
         <p></p>
-        // <Confirmation babyName={babyName} />
       ) : (
         budles.map((budle: any, index:number) => <Budle budle={budle} key={index} />)
       )}

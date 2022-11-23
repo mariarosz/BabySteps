@@ -46,6 +46,7 @@ h1 {
   font-weight: 500;
   font-size: 1.5rem;
   cursor: pointer;
+  color: black
 }
 .py-3 {
   padding-top: 0.75rem;
