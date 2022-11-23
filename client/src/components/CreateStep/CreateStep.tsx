@@ -19,8 +19,10 @@ export function CreateStep({
   const [notes, setNotes] = useState('');
 
   const userId = currentUser.uid;
+  const babyId = 'testBabyId';
 
-  const stepsRef = doc(db, 'users', userId, 'babies', '5zGOPGmsC5hnsKtck1fN');
+
+  const stepsRef = doc(db, 'users', userId, 'babies', babyId, 'steps');
 
 
 

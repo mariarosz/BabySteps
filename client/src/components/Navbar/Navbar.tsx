@@ -22,29 +22,39 @@ export function Navbar() {
       return true;
     }
   }
+  function onLogout() {
+    auth.signOut();
+    navigate("/");
+  }
+
 
   return (
     <div className="header">
         <h1 onClick={() => navigate("/")}>Baby Steps</h1>
         <div>
-          {/* make it so that if the user is logged in, the button says "Dashboard" and if they are not logged in, the button says "Login" and if they are on the login page, the button says "Sign out" */}
           <ul>
-      <li
-        className={`${
-          (pathMatchRoute("/") || pathMatchRoute("/dashboard"))
-      }`}
-      onClick={() => navigate("/login")} >
-          <button >Log In</button>
-        </li>
-        <li
-        className={`${
-          (pathMatchRoute("/signup"))
-        }`}
-      onClick={() => navigate("/signup")} >
-          <button  >Sign Up</button>
-      </li>
-      </ul>
-      </div>
+            {/* if you are in home page show login and signup buttons else show dashboard  and logout button  */}
+            {pathMatchRoute("/") ? (
+              <>
+                <li onClick={() => navigate("/login")}>
+                  <button>Log In</button>
+                  </li>
+                <li onClick={() => navigate("/signup")}>
+                  <button>Sign Up</button>
+                  </li>
+              </>
+            ) : (
+              <>
+                <li onClick={() => navigate("/dashboard")}>
+                  <button>Dashboard</button>
+                </li>
+                <li onClick={() => onLogout()}>
+                  <button>Logout</button>
+                  </li>
+              </>
+            )}
+          </ul>
+        </div>
     </div>
   );
 }
