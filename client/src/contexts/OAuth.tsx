@@ -1,7 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import { FcGoogle } from "react-icons/fc";
-import { toast } from "react-toastify";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 export default function OAuth() {
@@ -10,24 +9,25 @@ export default function OAuth() {
     try {
       const auth = getAuth();
       const provider = new GoogleAuthProvider();
+      console.log("amazing");
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
-
-      if (!docSnap.exists()) {
-        await setDoc(docRef, {
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+      if (docSnap.exists()) {
+        console.log("User already exists");
+      } else {
+        await setDoc(userRef, {
           name: user.displayName,
           email: user.email,
-          timestamp: serverTimestamp(),
+          created: serverTimestamp(),
         });
       }
-
+      console.log("Login Successful");
       navigate("/dashboard");
     } catch (error) {
-      toast.error("Could not authorize with Google");
+      console.log("Could not authorize with Google");
     }
   }
   return (

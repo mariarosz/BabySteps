@@ -20,7 +20,7 @@ export default function Timeline({
   babyId: string;
   }){
   const [steps, setSteps] = useState([]);
-
+//use GlobalContext to get the babyId
   useEffect(() => {
     async function getData() {
       const stepsRef = doc(db, 'users', userId, 'babies', babyId)
