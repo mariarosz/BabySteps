@@ -25,21 +25,21 @@ export default function Dashboard() {
   useEffect(() => {
     async function getData() {
       try {
-        const userIdQuery = doc(db, 'users', userId);
-        const babyRef = collection(userIdQuery, 'babies');
-        const response = await getDoc<any>(userIdQuery);
-        const userData = response.data()
+        const babiesFromDb = query(collection(db, 'users', userId, 'babies'));
+
+        const response = await getDocs<any>(babiesFromDb);
+        const userData = response
         console.log('userDATA: ', userData)
-        return userData.babies.map((baby:any) => {
+        return userData.docs.map((baby:any) => {
           console.log('baby :', baby)
-          return baby;
+          return baby.data();
         });
       } catch(error) {
         console.log(error)
       }
     }
     getData()
-      .then((result) => {
+      .then((result: any) => {
         babyRef.current = true;
         setBabyList(result)
       })
