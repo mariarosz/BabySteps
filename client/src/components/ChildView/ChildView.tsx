@@ -18,17 +18,18 @@ export default function ChildView() {
 
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
-  // const {babyName, setBabyName} = useContext(GlobalContext);
-  const { babyBirth } = useContext(GlobalContext);
+  const [babyId, setBabyId] = useState('')
+  // const { babyBirth } = useContext(GlobalContext);
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
   // const babyId = babyName + userId;
 
   const grabBabyId = async () => {
-    const babies = query(collection(db, 'users', userId, 'babies'));
+    const babies = query(collection(db, 'users', userId, 'babies'), where('name', '==', babyName));
     const querySnapshot = await getDocs(babies);
     querySnapshot.forEach((doc) => {
     console.log(doc.id, ' => ', doc.data());
+    setBabyId(doc.id)
   });
 
   }
