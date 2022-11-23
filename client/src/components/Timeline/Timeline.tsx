@@ -20,12 +20,14 @@ export default function Timeline({
   babyBirth: any;
   }){
   const [steps, setSteps] = useState([]);
-
+// update to get all steps for a baby and sort by date
+const  babyId = '1nmt6d2eFU4mzeNfxpiA'
 
   useEffect(() => {
     async function getData() {
       const stepsRef = query(
-        collection(db, 'steps', userId, 'babies')
+        collection(db, 'steps', userId, 'babies', babyId),
+        where('babyId', '==', babyId)
       );
       const response = await getDocs(stepsRef);
       console.log(response)
