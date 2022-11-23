@@ -19,9 +19,6 @@ export function AddBaby() {
 
   const handleSubmit = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-
-
-    const userId = currentUser.uid;
     const target = event.target as typeof event.target & {
       name: {value: string};
       date: {value: Date};

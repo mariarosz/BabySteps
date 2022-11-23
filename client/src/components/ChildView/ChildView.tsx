@@ -17,7 +17,7 @@ export default function ChildView() {
   const [showCreate, setShowCreate] = useState(false);
   const [created, setCreated] = useState(false);
   const [babyId, setBabyId] = useState('')
-  const { babyBirth } = useContext(GlobalContext);
+  const [babyBirth, setBabyBirth] = useState('')
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
 
@@ -27,6 +27,7 @@ export default function ChildView() {
     querySnapshot.forEach((doc) => {
       console.log(doc.id, ' => ', doc.data());
       setBabyId(doc.id)
+      setBabyBirth(doc.data().date)
     });
   }
 

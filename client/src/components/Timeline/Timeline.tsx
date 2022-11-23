@@ -24,9 +24,7 @@ export default function Timeline({
   useEffect(() => {
     async function getData() {
       const stepsRef = doc(db, 'users', userId, 'babies', babyId)
-
       const response: any = await getDoc(stepsRef);
-      console.log(response.data())
       return response.data().steps.map((doc: { data: () => { (): any; new(): any; steps: any[]; }; }) => {
         return doc;
       });
@@ -49,6 +47,8 @@ export default function Timeline({
       budles.push(newStep);
     }
   }
+
+  console.log(budles)
 
   budles.sort((a: any, b: any) => a.age - b.age);
 
