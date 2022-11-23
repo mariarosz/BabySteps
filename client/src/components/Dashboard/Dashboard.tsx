@@ -6,9 +6,6 @@ import { collection, query,getDocs } from 'firebase/firestore';
 import './Dashboard.css'
 import { Link } from "react-router-dom";
 
-
-
-
 export default function Dashboard() {
   const { currentUser } : any = getAuth();
   const userId = currentUser.uid
@@ -18,17 +15,16 @@ export default function Dashboard() {
   type Baby = {
     name: string,
     date: string,
+    steps: Array<any>,
   }
 
   useEffect(() => {
     async function getData() {
       try {
         const babiesFromDb = query(collection(db, 'users', userId, 'babies'));
-
         const response = await getDocs<any>(babiesFromDb);
         const userData = response
         return userData.docs.map((baby:any) => {
-
           return baby.data();
         });
       } catch(error) {
@@ -52,9 +48,12 @@ export default function Dashboard() {
         <div className='dash-btns-cont'>
         {babyList ? babyList.map(baby =>
           <Link to={baby.name}>
-            <div className='baby-selector current-baby'>
-              <p>{baby.name}</p>
-            </div>
+              <>
+                <div className='baby-selector current-baby'>
+                {baby.steps && baby.steps.length !== 0 ? (<img src={baby.steps[0].url} alt="img" />) : (null)}
+                  <p>{baby.name}</p>
+                </div>
+              </>
           </Link>) : (null)}
         <Link to={'/addbaby'}>
           <div className='baby-selector add-baby'>
