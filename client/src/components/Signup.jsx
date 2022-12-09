@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import img2 from '../step_img_placeholder2.webp';
+import img2 from '../assets/step_img_placeholder2.webp';
 
 export default function Signup() {
   const emailRef = useRef();

@@ -12,8 +12,6 @@ export default function Timeline({
   setCreated,
   babyName,
   babyBirth,
-  setBabyName,
-  setBabyBirth,
 }) {
   const [steps, setSteps] = useState([]);
 
@@ -29,9 +27,7 @@ export default function Timeline({
       });
     }
     setCreated(false);
-    getData()
-      .then((result) => setSteps(addAges(result, babyBirth)))
-      .then(() => console.log('im being run again on timeline'));
+    getData().then((result) => setSteps(addAges(result, babyBirth)));
   }, [userId, created, setCreated, babyBirth]);
 
   const budles = [];
