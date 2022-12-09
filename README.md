@@ -1,6 +1,8 @@
 # BabySteps
 
-![image](https://user-images.githubusercontent.com/105861220/206760029-35352bfb-063b-4d54-8ceb-078a8ed75aee.png)
+<p align="center">
+  <img src="img/baby_steps_signup.png" />
+</p>
 
 Welcome to Baby Steps! This web app is a simple and easy way for parents to track their child's development and milestones.
 
@@ -8,8 +10,10 @@ With Baby Steps, you can store information about your child's achievements and s
 
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/105861220/206760056-25dbd64a-6f99-4419-a632-9a0f623fb207.png)
-![image](https://user-images.githubusercontent.com/105861220/206760101-140fa1e2-dd11-4087-8f60-7be3a73ab908.png)
+<p align="center">
+  <img src="img/baby_steps_timeline.png" />
+  <img src="img/baby_steps_add.png" />
+</p>
 
 ## Installation
 
