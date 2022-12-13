@@ -11,8 +11,7 @@ With Baby Steps, you can store information about your child's achievements and s
 ## Screenshots
 
 <p align="center">
-  <img src="img/baby_steps_timeline.png" />
-  <img src="img/baby_steps_add.png" />
+  <img src="img/baby_steps_desktop.png" />
 </p>
 
 ## Installation
