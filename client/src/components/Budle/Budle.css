@@ -1,0 +1,16 @@
+.budle-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.budle-heading {
+  padding-top: 3%;
+  background-image: url(../../assets/svg/blob-sun.svg);
+  background-position: 100% 700%;
+  background-repeat: no-repeat;
+}
+
