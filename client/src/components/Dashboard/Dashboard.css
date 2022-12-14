@@ -1,0 +1,93 @@
+.dash-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: center;
+  color: white;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.dash-btns-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.baby-selector {
+  background-color: #c59155;
+  border-radius: 20px;
+  padding: 10px;
+  height: 15rem;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  margin: 2rem;
+}
+
+a:hover {
+  color: #c59155;
+  background-color: white;
+}
+
+.current-baby {
+  overflow: hidden;
+  background-color: #c59155;
+}
+
+.current-baby img {
+  background-color: #ffffff;
+  flex-shrink: 0;
+  min-width: 200%;
+  min-height: 100%;
+  filter: opacity(0.5);
+  mix-blend-mode: luminosity;
+}
+
+.baby-selector:hover {
+  color: black;
+  background-color: #f0e7d7;
+  opacity: 0.8;
+}
+
+.baby-selector span {
+  font-size: 80px;
+  transform: translate(0px, -10px);
+}
+
+.baby-selector p {
+  position: absolute;
+  bottom: 5px;
+  font-weight: bold;
+}
+
+.add-baby:hover {
+  cursor: pointer;
+}
+
+.dash-btns-cont img {
+  max-width: 200px;
+}
+
+.create-button {
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  border: none;
+  content: '+';
+  z-index: 6;
+  cursor: pointer;
+}

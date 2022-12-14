@@ -1,0 +1,10 @@
+.loader {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  height: 100vh;
+  margin: auto;
+  width: 100%;
+}

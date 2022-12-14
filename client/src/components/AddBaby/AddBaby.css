@@ -1,0 +1,12 @@
+#content-box-baby {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  min-width: 350px;
+  padding: 3%;
+  background-color: white;
+}
+
+.baby {
+  background-image: none;
+}
