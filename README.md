@@ -1,7 +1,7 @@
 # BabySteps
 
 <p align="center">
-  <img src="img/baby_steps_signup.png" />
+  <img src="img/baby_steps_timeline.png" />
 </p>
 
 Welcome to Baby Steps! This web app is a simple and easy way for parents to track their child's development and milestones.
@@ -41,3 +41,7 @@ With Baby Steps, you can store information about your child's achievements and s
 - [Firebase](https://firebase.google.com/) – Firestore database and authentication
 - Other dependencies:
   - [Cloudinary](https://cloudinary.com/) – Image cloud storage and delivery
+
+## Contributors
+
+Many thanks to Alex Crump([GitHub](https://github.com/11ac11)) and Filip Stan([GitHub](https://github.com/FilipTheGod)) for their contribution and pushing the project to the next stage! ✨
