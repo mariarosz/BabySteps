@@ -72,9 +72,7 @@ export default function SignUp() {
         <div className="baby-steps-info">
           <h3 id="hero">Your Baby development journal</h3>
           <div className="step-container">
-            <div className="step-content">
-              <h1>First self-eaten meal</h1>
-            </div>
+            <div className="step-content"></div>
           </div>
         </div>
         <div className="signup">
