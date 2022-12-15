@@ -32,6 +32,7 @@ With Baby Steps, you can store information about your child's achievements and s
 3. Run the app
 
    ```bash
+   npm run tsc
    npm start
    ```
 

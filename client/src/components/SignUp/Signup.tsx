@@ -1,33 +1,33 @@
-import { useState } from "react";
-import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import OAuth from "../../contexts/OAuth";
-import { FieldValue } from "firebase/firestore";
+import { useState } from 'react';
+import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import OAuth from '../../contexts/OAuth';
+import { FieldValue } from 'firebase/firestore';
 import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
-} from "firebase/auth";
+} from 'firebase/auth';
 import { db } from '../../firebase';
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import './Signup.css';
-import React from "react";
+import React from 'react';
 
 type FormDataType = {
-  email: string,
-  password?: string,
-  name: string,
-  timestamp?: FieldValue,
-}
+  email: string;
+  password?: string;
+  name: string;
+  timestamp?: FieldValue;
+};
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState<FormDataType>({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
   const { name, email, password } = formData;
   const navigate = useNavigate();
@@ -37,29 +37,30 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     }));
   }
+
   async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
 
     try {
       const auth = getAuth();
-      const userCredential = password && await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+      const userCredential =
+        password &&
+        (await createUserWithEmailAndPassword(auth, email, password));
 
-      auth.currentUser && updateProfile(auth.currentUser, {
-        displayName: name,
-      });
+      auth.currentUser &&
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+
       const user = userCredential && userCredential.user;
       const formDataCopy = { ...formData };
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
 
-      user && await setDoc(doc(db, "users", user.uid), formDataCopy);
-      navigate("/dashboard");
+      user && (await setDoc(doc(db, 'users', user.uid), formDataCopy));
+      navigate('/dashboard');
     } catch (error) {
-      toast.error("Something went wrong with the registration");
+      toast.error('Something went wrong with the registration');
     }
   }
   return (
@@ -79,57 +80,52 @@ export default function SignUp() {
         <div className="signup">
           <h1>Signup</h1>
           <div>
-        <form onSubmit={onSubmit}>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={onChange}
-              placeholder="Full name"
-            />
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={onChange}
-              placeholder="Email address"
-            />
-            <div>
+            <form onSubmit={onSubmit}>
               <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                value={password}
+                type="text"
+                id="name"
+                value={name}
                 onChange={onChange}
-                placeholder="Password"
+                placeholder="Full name"
               />
-              {showPassword ? (
-                <AiFillEyeInvisible
-                  onClick={() => setShowPassword((prevState) => !prevState)}
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={onChange}
+                placeholder="Email address"
+              />
+              <div>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  value={password}
+                  onChange={onChange}
+                  placeholder="Password"
                 />
-              ) : (
-                <AiFillEye
-                  onClick={() => setShowPassword((prevState) => !prevState)}
-                />
-              )}
-            </div>
-            <div>
-              <p id="link" >
-                Have a account?
-                <Link
-                  to="/login"
-                > Login
-                </Link>
-              </p>
-            </div>
-            <button type="submit">
-              Signup
-            </button>
-            <div>
-              <p> OR </p>
-            </div>
-            <OAuth />
-          </form>
-        </div>
+                {showPassword ? (
+                  <AiFillEyeInvisible
+                    onClick={() => setShowPassword((prevState) => !prevState)}
+                  />
+                ) : (
+                  <AiFillEye
+                    onClick={() => setShowPassword((prevState) => !prevState)}
+                  />
+                )}
+              </div>
+              <div>
+                <p id="link">
+                  Have a account?
+                  <Link to="/login"> Login</Link>
+                </p>
+              </div>
+              <button type="submit">Signup</button>
+              <div>
+                <p> OR </p>
+              </div>
+              <OAuth />
+            </form>
+          </div>
         </div>
       </div>
     </div>
