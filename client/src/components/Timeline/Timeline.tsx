@@ -32,7 +32,6 @@ export default function Timeline({
     setCreated(false);
     getData()
       .then((result: any) => setSteps(addAges(result, babyBirth)))
-      .then(() => console.log('im being run again on timeline'));
   }, [userId, created, setCreated, babyBirth, babyId]);
 
   const budles: any = [];

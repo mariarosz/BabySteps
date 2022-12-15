@@ -47,10 +47,16 @@ export default function SignUp() {
         password &&
         (await createUserWithEmailAndPassword(auth, email, password));
 
-      auth.currentUser &&
-        updateProfile(auth.currentUser, {
-          displayName: name,
-        });
+      console.log(auth.currentUser);
+
+      try {
+        auth.currentUser &&
+          updateProfile(auth.currentUser, {
+            displayName: name,
+          });
+      } catch (err) {
+        console.log('This is an error from signup:', err);
+      }
 
       const user = userCredential && userCredential.user;
       const formDataCopy = { ...formData };
